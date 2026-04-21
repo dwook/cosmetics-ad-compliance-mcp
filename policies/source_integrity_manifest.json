@@ -1,0 +1,168 @@
+{
+  "manifestVersion": 1,
+  "sources": [
+    {
+      "sourceId": "cosmetics-act",
+      "kind": "law_snapshot",
+      "versionTag": "2026-04-02",
+      "artifacts": [
+        {
+          "label": "snapshot-manifest",
+          "path": "policies/law_snapshots/cosmetics-act/manifest.json",
+          "sha256": "1b1a82ad9ee64869ad3d232d2ba1e19e191ee86ee665d0d32b399ffc5a82eb5f"
+        },
+        {
+          "label": "metadata",
+          "path": "policies/law_snapshots/cosmetics-act/versions/2026-04-02/metadata.json",
+          "sha256": "bfc73f68b5968d6327c41dc57444d0a06f357b85419d4fcf5e6b296d9460806c"
+        },
+        {
+          "label": "body",
+          "path": "policies/law_snapshots/cosmetics-act/versions/2026-04-02/body.txt",
+          "sha256": "b4fca71545d32c1ef78a4bed94f6ca0e03c14806a39edc99f5ef92902b36b5b4"
+        },
+        {
+          "label": "anchors",
+          "path": "policies/law_snapshots/cosmetics-act/versions/2026-04-02/anchors.json",
+          "sha256": "139fe5e8267b502cea6c7e1754933b8f39f9221b16b6404486a75ba43566e66c"
+        },
+        {
+          "label": "raw-body",
+          "path": "policies/law_snapshots/cosmetics-act/versions/2026-04-02/body.source.html",
+          "sha256": "f84029bbb028c4826f31f1552cd704175da2f771d4ae8d88f11aedf3ee685fe4"
+        }
+      ]
+    },
+    {
+      "sourceId": "enforcement-decree",
+      "kind": "law_snapshot",
+      "versionTag": "2026-03-10",
+      "artifacts": [
+        {
+          "label": "snapshot-manifest",
+          "path": "policies/law_snapshots/enforcement-decree/manifest.json",
+          "sha256": "db19f4d3c91ef5af68b45cbc3adb96544c8d810bbd4c0f3bb97d0cb63066f629"
+        },
+        {
+          "label": "metadata",
+          "path": "policies/law_snapshots/enforcement-decree/versions/2026-03-10/metadata.json",
+          "sha256": "57fcd01fac13a91c51389deb1f8c70d1d36c400e2da3b0f1fea49964c03ecfd3"
+        },
+        {
+          "label": "body",
+          "path": "policies/law_snapshots/enforcement-decree/versions/2026-03-10/body.txt",
+          "sha256": "cb392491c07acdfee257cdcd2ccb8f8f0a32c0fb5c8ffc4c92f3a0bc27ef3383"
+        },
+        {
+          "label": "anchors",
+          "path": "policies/law_snapshots/enforcement-decree/versions/2026-03-10/anchors.json",
+          "sha256": "8bed359e7a0683962c1fe0ccfb28f162e1851e5409c6b873028a96cebcf14531"
+        },
+        {
+          "label": "raw-body",
+          "path": "policies/law_snapshots/enforcement-decree/versions/2026-03-10/body.source.html",
+          "sha256": "5e91c4306a1c16caad6a76f390a7ea5a373fe111efa751e019a9903c02f6d3ed"
+        }
+      ]
+    },
+    {
+      "sourceId": "enforcement-rule",
+      "kind": "law_snapshot",
+      "versionTag": "2025-08-01",
+      "artifacts": [
+        {
+          "label": "snapshot-manifest",
+          "path": "policies/law_snapshots/enforcement-rule/manifest.json",
+          "sha256": "ec39e47c02d9534ce624687f604a9475e6022e9fe7d371b392e3c71cf70870c0"
+        },
+        {
+          "label": "metadata",
+          "path": "policies/law_snapshots/enforcement-rule/versions/2025-08-01/metadata.json",
+          "sha256": "eabf66a872680c6fbbc8a351d0268f02113b5eb76e042f66f1c3c0873aaa7f45"
+        },
+        {
+          "label": "body",
+          "path": "policies/law_snapshots/enforcement-rule/versions/2025-08-01/body.txt",
+          "sha256": "3ec07f034377dd832ffd947ea63877c641259c3528d5e66cccaa5b42f4ecc6c0"
+        },
+        {
+          "label": "anchors",
+          "path": "policies/law_snapshots/enforcement-rule/versions/2025-08-01/anchors.json",
+          "sha256": "aecb489ec8e9f8a56e8ff1b68e11fc398ba0ef6f3a91206b629bf107ded85139"
+        },
+        {
+          "label": "raw-body",
+          "path": "policies/law_snapshots/enforcement-rule/versions/2025-08-01/body.source.html",
+          "sha256": "0447ed8b76bc0f00e0f78759ebadadf33080ad0cdaf7714ae32806329dd3092b"
+        },
+        {
+          "label": "appendix-5-pdf",
+          "path": "policies/law_snapshots/enforcement-rule/versions/2025-08-01/appendix-5.pdf",
+          "sha256": "97afc81ea1b8c684289cbaeba252aca82c6571a88dc0e0cf50ace62074208462"
+        },
+        {
+          "label": "appendix-5-text",
+          "path": "policies/law_snapshots/enforcement-rule/versions/2025-08-01/appendix-5.txt",
+          "sha256": "db64969c8aec4ffc6ad1e427cd7274c51bd55a1a5fd77a2926c5dc43a99b04c5"
+        }
+      ]
+    },
+    {
+      "sourceId": "mfds-guideline",
+      "kind": "policy_asset",
+      "artifacts": [
+        {
+          "label": "local-asset",
+          "path": "policies/source_pdfs/mfds-cosmetics-ad-guideline-20250814.pdf",
+          "sha256": "a3efa6c204c73cb1bfd08bb7be5598c7344c9494c3180256577e315bbfdeb8bf"
+        },
+        {
+          "label": "extracted-text",
+          "path": "policies/extracted_text/mfds-guideline.txt",
+          "sha256": "8f801522e1396593506eb6fcdaad6f7a7028026e46a832896842a177c5bf8530"
+        },
+        {
+          "label": "page-block-index",
+          "path": "policies/anchor_indexes/mfds-guideline.page-block.json",
+          "sha256": "c694727e38b44a0bb10e1dd22c752ee6de90d9f90fe35395d679d605141471f9"
+        },
+        {
+          "label": "semantic-index",
+          "path": "policies/anchor_indexes/mfds-guideline.semantic.json",
+          "sha256": "3721130155d769823a2cacea9207e32b523fc41ad44556607874d6dc073e28ab"
+        },
+        {
+          "label": "generated-policy-index-module",
+          "path": "packages/core/src/policy-anchor-index.generated.ts",
+          "sha256": "4c7f12af58963a713c61b26192ba47ac9f95cf9bf02fe73effb242b1210a5b5a"
+        }
+      ]
+    },
+    {
+      "sourceId": "kcia-guide",
+      "kind": "policy_asset",
+      "artifacts": [
+        {
+          "label": "local-asset",
+          "path": "policies/source_pdfs/kcia-advisory-guide-2025.pdf",
+          "sha256": "2a0cc2798a3f5da4d1df32733fb156837e5631f0f851eab0a3521af06b8912aa"
+        },
+        {
+          "label": "extracted-text",
+          "path": "policies/extracted_text/kcia-guide.txt",
+          "sha256": "ad91c441972fc59c02a2ceff17ecfc2d47b4789bf3db01a86f551c9448a3bfc9"
+        },
+        {
+          "label": "page-block-index",
+          "path": "policies/anchor_indexes/kcia-guide.page-block.json",
+          "sha256": "c5016531512073d82c4a89c501229349e58dcc95ec26f837ba391cbdaf7a4593"
+        },
+        {
+          "label": "semantic-index",
+          "path": "policies/anchor_indexes/kcia-guide.semantic.json",
+          "sha256": "fd4f910294f85f857e490e356dd11ccd434de97827a325a631d65b007cbae1b6"
+        }
+      ]
+    }
+  ]
+}

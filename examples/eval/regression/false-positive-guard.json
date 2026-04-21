@@ -1,0 +1,103 @@
+[
+  {
+    "id": "informational-pass",
+    "description": "정보성 사용 팁은 false positive 없이 PASS로 남아야 한다.",
+    "request": {
+      "productCategory": "cosmetics",
+      "adCopy": "세안 후 보습 크림을 바르는 순서와 사용 팁을 정리했습니다."
+    },
+    "expected": {
+      "verdict": "PASS",
+      "mustIncludeCodes": [],
+      "mustExcludeCodes": [],
+      "mustIncludeCitationLabels": [],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "functional-scope",
+    "description": "신고 범위 안의 보수적 기능성 표현은 false positive 없이 PASS로 남아야 한다.",
+    "request": {
+      "productCategory": "cosmetics",
+      "productKind": "functional",
+      "functionalCategories": [
+        "brightening_lightening",
+        "wrinkle_improvement"
+      ],
+      "adCopy": "미백과 주름 개선을 돕는 크림입니다."
+    },
+    "expected": {
+      "verdict": "PASS",
+      "mustIncludeCodes": [],
+      "mustExcludeCodes": ["COSMETICS_FUNCTIONAL_SCOPE"],
+      "mustIncludeCitationLabels": [],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "tc-009-functional-allowed",
+    "description": "신고 범위 안의 주름개선 기능성 카피는 false positive 없이 PASS로 남아야 한다.",
+    "request": {
+      "requestId": "TC-009",
+      "productCategory": "cosmetics",
+      "productKind": "functional",
+      "functionalCategories": ["wrinkle_improvement"],
+      "adCopy": "매일의 탄력 루틴을 더 탄탄하게. 주름개선 기능성화장품으로 피부를 탄탄하게 가꾸는 데 도움을 줍니다."
+    },
+    "expected": {
+      "verdict": "PASS",
+      "mustIncludeCodes": [],
+      "mustExcludeCodes": ["COSMETICS_FUNCTIONAL_SCOPE"],
+      "mustIncludeCitationLabels": [],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "nonhuman-biologic-qualified-claim",
+    "description": "비인체 유래 qualifier가 명확한 biologic 표현은 false positive 없이 PASS로 남아야 한다.",
+    "request": {
+      "productCategory": "cosmetics",
+      "adCopy": "식물줄기세포 함유와 우유 엑소좀 원료를 사용한 보습 크림입니다."
+    },
+    "expected": {
+      "verdict": "PASS",
+      "mustIncludeCodes": [],
+      "mustExcludeCodes": ["COSMETICS_HUMAN_DERIVED_CLAIM"],
+      "mustIncludeCitationLabels": [],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "boundary-bright-expression-pass",
+    "description": "경계형 미용 표현인 밝고 화사하게는 false positive 없이 PASS로 남아야 한다.",
+    "request": {
+      "productCategory": "cosmetics",
+      "adCopy": "피부를 밝고 화사하게 연출해주는 톤업 크림입니다."
+    },
+    "expected": {
+      "verdict": "PASS",
+      "mustIncludeCodes": [],
+      "mustExcludeCodes": [],
+      "mustIncludeCitationLabels": [],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "qualified-specific-free-pass",
+    "description": "근거 없이 금지 성격으로 몰리기 쉬운 파라벤 없이 표현은 false positive 없이 PASS로 남아야 한다.",
+    "request": {
+      "productCategory": "cosmetics",
+      "adCopy": "파라벤 없이 설계한 포뮬러로 안내하는 크림입니다."
+    },
+    "expected": {
+      "verdict": "PASS",
+      "mustIncludeCodes": [],
+      "mustExcludeCodes": [
+        "COSMETICS_SPECIFIC_INGREDIENT_FREE_CLAIM",
+        "COSMETICS_BANNED_INGREDIENT_FREE_CLAIM"
+      ],
+      "mustIncludeCitationLabels": [],
+      "mustIncludeUncertaintyCodes": []
+    }
+  }
+]

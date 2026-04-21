@@ -1,0 +1,57 @@
+[
+  {
+    "id": "functional-scope",
+    "description": "신고 범위 안의 미백·주름개선 표현은 허용 가능한 기능성 카피 버킷에서 PASS로 남아야 한다.",
+    "request": {
+      "productCategory": "cosmetics",
+      "productKind": "functional",
+      "functionalCategories": [
+        "brightening_lightening",
+        "wrinkle_improvement"
+      ],
+      "adCopy": "미백과 주름 개선을 돕는 크림입니다."
+    },
+    "expected": {
+      "verdict": "PASS",
+      "mustIncludeCodes": [],
+      "mustExcludeCodes": ["COSMETICS_FUNCTIONAL_SCOPE"],
+      "mustIncludeCitationLabels": [],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "tc-009-functional-allowed",
+    "description": "주름개선 신고 범위 안의 보수적 기능성 카피는 허용 버킷에서 PASS로 남아야 한다.",
+    "request": {
+      "requestId": "TC-009",
+      "productCategory": "cosmetics",
+      "productKind": "functional",
+      "functionalCategories": ["wrinkle_improvement"],
+      "adCopy": "매일의 탄력 루틴을 더 탄탄하게. 주름개선 기능성화장품으로 피부를 탄탄하게 가꾸는 데 도움을 줍니다."
+    },
+    "expected": {
+      "verdict": "PASS",
+      "mustIncludeCodes": [],
+      "mustExcludeCodes": ["COSMETICS_FUNCTIONAL_SCOPE"],
+      "mustIncludeCitationLabels": [],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "functional-hair-loss-allowed",
+    "description": "탈모 완화 신고 범위 안의 기능성 카피는 허용 버킷에서 PASS로 남아야 한다.",
+    "request": {
+      "productCategory": "cosmetics",
+      "productKind": "functional",
+      "functionalCategories": ["hair_loss_relief"],
+      "adCopy": "탈모 증상 완화에 도움을 주는 기능성화장품."
+    },
+    "expected": {
+      "verdict": "PASS",
+      "mustIncludeCodes": [],
+      "mustExcludeCodes": ["COSMETICS_FUNCTIONAL_SCOPE", "COSMETICS_FUNCTIONAL_CATEGORY_MISMATCH"],
+      "mustIncludeCitationLabels": [],
+      "mustIncludeUncertaintyCodes": []
+    }
+  }
+]

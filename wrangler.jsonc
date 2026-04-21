@@ -1,0 +1,26 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "cosmetics-ad-compliance-mcp",
+  "main": "workers/remote-mcp/src/index.mjs",
+  "compatibility_date": "2026-04-19",
+  "compatibility_flags": ["nodejs_compat"],
+  "vars": {
+    "MCP_ROUTE": "/mcp",
+    "RATE_LIMIT_PER_MINUTE": "30",
+    "RATE_LIMIT_GLOBAL_PER_MINUTE": "300"
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "REMOTE_MCP_RATE_LIMITER",
+        "class_name": "RemoteMcpRateLimiter"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["RemoteMcpRateLimiter"]
+    }
+  ]
+}

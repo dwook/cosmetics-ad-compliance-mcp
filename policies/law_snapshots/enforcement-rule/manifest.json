@@ -1,0 +1,16 @@
+{
+  "sourceId": "enforcement-rule",
+  "title": "화장품법 시행규칙",
+  "currentVersionTag": "2025-08-01",
+  "syncPolicy": "tracked_external_sync",
+  "officialUrl": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=273053",
+  "versions": [
+    {
+      "versionTag": "2025-08-01",
+      "metadataPath": "policies/law_snapshots/enforcement-rule/versions/2025-08-01/metadata.json",
+      "bodyPath": "policies/law_snapshots/enforcement-rule/versions/2025-08-01/body.txt",
+      "anchorsPath": "policies/law_snapshots/enforcement-rule/versions/2025-08-01/anchors.json",
+      "status": "synced"
+    }
+  ]
+}

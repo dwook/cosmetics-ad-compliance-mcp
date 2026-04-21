@@ -1,0 +1,176 @@
+[
+  {
+    "id": "tc-001-ingredient-paper-bypass",
+    "description": "원료 설명이 제품 효능으로 전이되면 ingredient transfer로 잡혀야 한다.",
+    "request": {
+      "requestId": "TC-001",
+      "productCategory": "cosmetics",
+      "productKind": "functional",
+      "functionalCategories": ["hair_loss_relief"],
+      "adCopy": "매일 빠지는 모발이 신경 쓰인다면, 비오틴 5000mcg 고함량 포뮬러로 두피와 모발에 힘을 더해보세요. 비오틴은 모발 성장에 필수적인 영양소로 알려져 있습니다 (출처: Journal of Dermatology 2019). 탈모 증상 완화에 도움을 주는 기능성화장품."
+    },
+    "expected": {
+      "verdict": "WARNING",
+      "mustIncludeCodes": ["COSMETICS_INGREDIENT_TRANSFER"],
+      "mustExcludeCodes": ["COSMETICS_FUNCTIONAL_SCOPE"],
+      "mustIncludeCitationLabels": ["화장품법 제13조제1항제4호"],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "tc-002-authority-certification",
+    "description": "식약처 허가·인증으로 읽히는 표현은 authority/certification 이슈로 잡혀야 한다.",
+    "request": {
+      "requestId": "TC-002",
+      "productCategory": "cosmetics",
+      "productKind": "functional",
+      "functionalCategories": ["hair_loss_relief"],
+      "adCopy": "식약처 인증을 내세운 프리미엄 탈모 샴푸, 공식 허가를 받은 전문 탈모 개선 포뮬러로 매일의 두피 케어를 완성하세요."
+    },
+    "expected": {
+      "verdict": "WARNING",
+      "mustIncludeCodes": ["COSMETICS_AUTHORITY_CERTIFICATION"],
+      "mustExcludeCodes": [],
+      "mustIncludeCitationLabels": ["식품의약품안전처 허가, 인증"],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "tc-003-general-whitening",
+    "description": "일반화장품의 미백 범주 표현은 기능성 scope review로 잡혀야 한다.",
+    "request": {
+      "requestId": "TC-003",
+      "productCategory": "cosmetics",
+      "productKind": "general",
+      "adCopy": "칙칙한 피부 톤이 고민이라면, 기미와 주근깨를 흐리게 해주는 브라이트닝 세럼으로 맑은 인상을 완성하세요."
+    },
+    "expected": {
+      "verdict": "WARNING",
+      "mustIncludeCodes": ["COSMETICS_FUNCTIONAL_SCOPE"],
+      "mustExcludeCodes": ["COSMETICS_FUNCTIONAL_CATEGORY_MISMATCH"],
+      "mustIncludeCitationLabels": ["화장품법 시행규칙 제22조"],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "tc-004-medical-effect",
+    "description": "상처 치유와 재생 표현은 medical claim으로 BLOCK이 나와야 한다.",
+    "request": {
+      "requestId": "TC-004",
+      "productCategory": "cosmetics",
+      "productKind": "general",
+      "adCopy": "예민해진 피부를 편안하게 감싸주고, 상처 치유와 피부 재생에 도움을 주는 집중 케어 크림."
+    },
+    "expected": {
+      "verdict": "BLOCK",
+      "mustIncludeCodes": ["COSMETICS_MEDICAL_CLAIM"],
+      "mustExcludeCodes": [],
+      "mustIncludeCitationLabels": ["화장품법 제13조제1항제1호"],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "tc-005-evidence-overlay",
+    "description": "수치와 인체적용시험 표현이 함께 나오면 evidence overlay로 잡혀야 한다.",
+    "request": {
+      "requestId": "TC-005",
+      "productCategory": "cosmetics",
+      "productKind": "general",
+      "adCopy": "단 2주 만에 수분감 30% 개선. 인체적용시험 완료로 확인된 촉촉한 광채를 경험해보세요."
+    },
+    "expected": {
+      "verdict": "WARNING",
+      "mustIncludeCodes": ["COSMETICS_EVIDENCE_OVERLAY"],
+      "mustExcludeCodes": [],
+      "mustIncludeCitationLabels": ["화장품 표시·광고 관리 지침"],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "tc-006-comparison-claim",
+    "description": "비교 대상과 수치 우위 표현은 comparison claim으로 잡혀야 한다.",
+    "request": {
+      "requestId": "TC-006",
+      "productCategory": "cosmetics",
+      "productKind": "general",
+      "adCopy": "자사제품 대비 지속력 5배 업그레이드. 타제품 비교 테스트까지 완료한 롱래스팅 포뮬러."
+    },
+    "expected": {
+      "verdict": "WARNING",
+      "mustIncludeCodes": ["COSMETICS_COMPARISON_CLAIM"],
+      "mustExcludeCodes": [],
+      "mustIncludeCitationLabels": ["타제품과 비교하는 내용의 광고"],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "tc-007-doctor-endorsement",
+    "description": "전문의 추천 표현은 expert endorsement로 잡혀야 한다.",
+    "request": {
+      "requestId": "TC-007",
+      "productCategory": "cosmetics",
+      "productKind": "general",
+      "adCopy": "피부과 전문의 추천으로 완성된 공식 인증 더마 세럼으로 민감한 피부도 자신 있게 케어하세요."
+    },
+    "expected": {
+      "verdict": "WARNING",
+      "mustIncludeCodes": ["COSMETICS_EXPERT_ENDORSEMENT"],
+      "mustExcludeCodes": ["COSMETICS_AUTHORITY_CERTIFICATION"],
+      "mustIncludeCitationLabels": ["화장품 광고자문 기준 및 해설서"],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "tc-008-acne-general",
+    "description": "일반화장품의 여드름성 피부 표방은 기능성 scope review로 잡혀야 한다.",
+    "request": {
+      "requestId": "TC-008",
+      "productCategory": "cosmetics",
+      "productKind": "general",
+      "adCopy": "번들거림과 트러블이 고민인 피부를 위해, 여드름성 피부에 사용에 적합한 진정 토너."
+    },
+    "expected": {
+      "verdict": "WARNING",
+      "mustIncludeCodes": ["COSMETICS_FUNCTIONAL_SCOPE"],
+      "mustExcludeCodes": ["COSMETICS_FUNCTIONAL_CATEGORY_MISMATCH"],
+      "mustIncludeCitationLabels": ["화장품법 시행규칙 제22조"],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "tc-009-functional-allowed",
+    "description": "신고 범위 안의 보수적 기능성 카피는 PASS로 남아야 한다.",
+    "request": {
+      "requestId": "TC-009",
+      "productCategory": "cosmetics",
+      "productKind": "functional",
+      "functionalCategories": ["wrinkle_improvement"],
+      "adCopy": "매일의 탄력 루틴을 더 탄탄하게. 주름개선 기능성화장품으로 피부를 탄탄하게 가꾸는 데 도움을 줍니다."
+    },
+    "expected": {
+      "verdict": "PASS",
+      "mustIncludeCodes": [],
+      "mustExcludeCodes": ["COSMETICS_FUNCTIONAL_SCOPE"],
+      "mustIncludeCitationLabels": [],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "tc-010-functional-mismatch",
+    "description": "신고하지 않은 탈모 기능을 주장하면 functional mismatch로 잡혀야 한다.",
+    "request": {
+      "requestId": "TC-010",
+      "productCategory": "cosmetics",
+      "productKind": "functional",
+      "functionalCategories": ["wrinkle_improvement"],
+      "adCopy": "힘없이 빠지는 모발이 고민이라면, 빠지는 모발을 감소시키고 탈모 증상 완화에 도움을 주는 집중 케어 포뮬러."
+    },
+    "expected": {
+      "verdict": "WARNING",
+      "mustIncludeCodes": ["COSMETICS_FUNCTIONAL_CATEGORY_MISMATCH"],
+      "mustExcludeCodes": ["COSMETICS_FUNCTIONAL_SCOPE"],
+      "mustIncludeCitationLabels": ["화장품 광고자문 기준 및 해설서"],
+      "mustIncludeUncertaintyCodes": []
+    }
+  }
+]

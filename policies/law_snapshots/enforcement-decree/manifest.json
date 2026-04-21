@@ -1,0 +1,16 @@
+{
+  "sourceId": "enforcement-decree",
+  "title": "화장품법 시행령",
+  "currentVersionTag": "2026-03-10",
+  "syncPolicy": "tracked_external_sync",
+  "officialUrl": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=283963",
+  "versions": [
+    {
+      "versionTag": "2026-03-10",
+      "metadataPath": "policies/law_snapshots/enforcement-decree/versions/2026-03-10/metadata.json",
+      "bodyPath": "policies/law_snapshots/enforcement-decree/versions/2026-03-10/body.txt",
+      "anchorsPath": "policies/law_snapshots/enforcement-decree/versions/2026-03-10/anchors.json",
+      "status": "synced"
+    }
+  ]
+}

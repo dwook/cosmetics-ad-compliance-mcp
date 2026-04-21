@@ -1,0 +1,185 @@
+[
+  {
+    "id": "high-risk-medical",
+    "description": "의약품 오인 표현은 false negative 없이 BLOCK으로 남아야 한다.",
+    "request": {
+      "productCategory": "cosmetics",
+      "adCopy": "단 7일 만에 기미 치료, 100% 피부 재생을 약속합니다."
+    },
+    "expected": {
+      "verdict": "BLOCK",
+      "mustIncludeCodes": ["COSMETICS_MEDICAL_CLAIM"],
+      "mustExcludeCodes": ["COSMETICS_GENERAL_MISLEADING"],
+      "mustIncludeCitationLabels": [
+        "화장품법 제13조제1항제1호",
+        "화장품 표시·광고 관리 지침"
+      ],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "tc-002-authority-certification",
+    "description": "식약처 허가·인증 오인 표현은 false negative 없이 잡혀야 한다.",
+    "request": {
+      "requestId": "TC-002",
+      "productCategory": "cosmetics",
+      "productKind": "functional",
+      "functionalCategories": ["hair_loss_relief"],
+      "adCopy": "식약처 인증을 내세운 프리미엄 탈모 샴푸, 공식 허가를 받은 전문 탈모 개선 포뮬러로 매일의 두피 케어를 완성하세요."
+    },
+    "expected": {
+      "verdict": "WARNING",
+      "mustIncludeCodes": ["COSMETICS_AUTHORITY_CERTIFICATION"],
+      "mustExcludeCodes": [],
+      "mustIncludeCitationLabels": ["식품의약품안전처 허가, 인증"],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "tc-005-evidence-overlay",
+    "description": "수치와 인체적용시험 overlay는 false negative 없이 잡혀야 한다.",
+    "request": {
+      "requestId": "TC-005",
+      "productCategory": "cosmetics",
+      "productKind": "general",
+      "adCopy": "단 2주 만에 수분감 30% 개선. 인체적용시험 완료로 확인된 촉촉한 광채를 경험해보세요."
+    },
+    "expected": {
+      "verdict": "WARNING",
+      "mustIncludeCodes": ["COSMETICS_EVIDENCE_OVERLAY"],
+      "mustExcludeCodes": [],
+      "mustIncludeCitationLabels": ["화장품 표시·광고 관리 지침"],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "tc-006-comparison-claim",
+    "description": "비교 대상과 수치 우위 표현은 false negative 없이 잡혀야 한다.",
+    "request": {
+      "requestId": "TC-006",
+      "productCategory": "cosmetics",
+      "productKind": "general",
+      "adCopy": "자사제품 대비 지속력 5배 업그레이드. 타제품 비교 테스트까지 완료한 롱래스팅 포뮬러."
+    },
+    "expected": {
+      "verdict": "WARNING",
+      "mustIncludeCodes": ["COSMETICS_COMPARISON_CLAIM"],
+      "mustExcludeCodes": [],
+      "mustIncludeCitationLabels": ["타제품과 비교하는 내용의 광고"],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "side-effect-misleading",
+    "description": "부작용 부인·명현현상 표현은 false negative 없이 잡혀야 한다.",
+    "request": {
+      "productCategory": "cosmetics",
+      "adCopy": "부작용이 전혀 없고 사용 초기에 명현현상이 있을 수 있는 집중 진정 크림."
+    },
+    "expected": {
+      "verdict": "WARNING",
+      "mustIncludeCodes": ["COSMETICS_SIDE_EFFECT_MISLEADING"],
+      "mustExcludeCodes": ["COSMETICS_GENERAL_MISLEADING"],
+      "mustIncludeCitationLabels": [
+        "화장품법 제13조제1항제4호",
+        "일시적 악화(명현현상)"
+      ],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "banned-ingredient-free-claim",
+    "description": "배합금지 원료 무첨가 표현은 false negative 없이 잡혀야 한다.",
+    "request": {
+      "productCategory": "cosmetics",
+      "adCopy": "스테로이드 무첨가 크림으로 소개합니다."
+    },
+    "expected": {
+      "verdict": "WARNING",
+      "mustIncludeCodes": ["COSMETICS_BANNED_INGREDIENT_FREE_CLAIM"],
+      "mustExcludeCodes": ["COSMETICS_SPECIFIC_INGREDIENT_FREE_CLAIM", "COSMETICS_GENERAL_MISLEADING"],
+      "mustIncludeCitationLabels": [
+        "화장품법 제13조제1항제4호",
+        "배합금지 원료를 사용하지 않았다는 표현"
+      ],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "ingredient-transfer-functional-combo",
+    "description": "원료 설명과 기능성 효능 연결이 결합된 우회형 문장은 false negative 없이 두 쟁점이 함께 잡혀야 한다.",
+    "request": {
+      "productCategory": "cosmetics",
+      "adCopy": "비오틴은 모발 성장에 필수적인 영양소입니다. Journal of Dermatology 2019를 바탕으로 탈모 증상 완화에 도움을 주는 기능성화장품."
+    },
+    "expected": {
+      "verdict": "WARNING",
+      "mustIncludeCodes": ["COSMETICS_INGREDIENT_TRANSFER", "COSMETICS_FUNCTIONAL_SCOPE"],
+      "mustExcludeCodes": [],
+      "mustIncludeCitationLabels": [
+        "원료 관련 설명 시 완제품에 대한 효능ㆍ효과로 오인될 수 있는 표현",
+        "탈모 증상 완화에 도움을 주는 기능성화장품으로서 이미 심사"
+      ],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "authority-functional-combo",
+    "description": "식약처 인증과 탈모 개선 표현이 결합된 문장은 false negative 없이 인증 오인과 기능성 범위가 함께 잡혀야 한다.",
+    "request": {
+      "productCategory": "cosmetics",
+      "adCopy": "식약처 인증 탈모 개선 샴푸."
+    },
+    "expected": {
+      "verdict": "WARNING",
+      "mustIncludeCodes": ["COSMETICS_AUTHORITY_CERTIFICATION", "COSMETICS_FUNCTIONAL_SCOPE"],
+      "mustExcludeCodes": [],
+      "mustIncludeCitationLabels": [
+        "동 제품은 식품의약품안전처 허가, 인증을 받은 제품임"
+      ],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "functional-category-mismatch-hair-loss",
+    "description": "주름개선 신고 제품이 탈모 완화 표현을 쓰면 false negative 없이 범주 불일치가 잡혀야 한다.",
+    "request": {
+      "productCategory": "cosmetics",
+      "productKind": "functional",
+      "functionalCategories": ["wrinkle_improvement"],
+      "adCopy": "탈모 증상 완화에 도움을 주는 기능성화장품."
+    },
+    "expected": {
+      "verdict": "WARNING",
+      "mustIncludeCodes": ["COSMETICS_FUNCTIONAL_CATEGORY_MISMATCH"],
+      "mustExcludeCodes": ["COSMETICS_FUNCTIONAL_SCOPE"],
+      "mustIncludeCitationLabels": [
+        "탈모 증상 완화에 도움을 주는 기능성화장품으로서 이미 심사"
+      ],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "testimonial-ranking-expert-combo",
+    "description": "후기·순위·전문가 추천이 한 문장에 섞인 경우 false negative 없이 세 쟁점이 함께 잡혀야 한다.",
+    "request": {
+      "productCategory": "cosmetics",
+      "adCopy": "피부과 전문의 추천 1위 크림, 사용자 후기에서 입증된 보습력."
+    },
+    "expected": {
+      "verdict": "WARNING",
+      "mustIncludeCodes": [
+        "COSMETICS_TESTIMONIAL_CLAIM",
+        "COSMETICS_RANKING_CLAIM",
+        "COSMETICS_EXPERT_ENDORSEMENT"
+      ],
+      "mustExcludeCodes": [],
+      "mustIncludeCitationLabels": [
+        "사용 전·후 사진, 사용 후기 인용 시",
+        "절대적 표현",
+        "의사·치과의사·한의사·약사·의료기관 또는 그 밖의 의·약 분야의 전문가가"
+      ],
+      "mustIncludeUncertaintyCodes": []
+    }
+  }
+]

@@ -1,0 +1,43 @@
+{
+  "name": "cosmetics-ad-compliance",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test dist/tests/review-engine.test.js",
+    "demo": "npm run build && node dist/packages/mcp/src/demo.js",
+    "mcp": "node scripts/run_mcp_server.mjs",
+    "mcp:smoke": "npm run build && node scripts/run_mcp_smoke.mjs",
+    "mcp:remote:dev": "npm run build && WRANGLER_LOG_PATH=.wrangler/logs node --env-file-if-exists=.env.local ./node_modules/wrangler/bin/wrangler.js dev",
+    "mcp:remote:deploy": "npm run build && WRANGLER_LOG_PATH=.wrangler/logs node --env-file-if-exists=.env.local ./node_modules/wrangler/bin/wrangler.js deploy",
+    "mcp:remote:bundle-check": "npm run build && WRANGLER_LOG_PATH=.wrangler/logs node --env-file-if-exists=.env.local ./node_modules/wrangler/bin/wrangler.js deploy --dry-run",
+    "generate:policy-anchors": "node scripts/generate_policy_anchor_indexes.mjs",
+    "generate:law-snapshot-anchor-module": "node scripts/generate_law_snapshot_anchor_module.mjs",
+    "generate:source-integrity-manifest": "npm run build && node scripts/generate_source_integrity_manifest.mjs",
+    "eval:samples": "npm run build && node scripts/run_sample_eval.mjs --set all",
+    "eval:dev": "npm run build && node scripts/run_sample_eval.mjs --set dev",
+    "eval:holdout": "npm run build && node scripts/run_sample_eval.mjs --set holdout",
+    "eval:regression": "npm run build && node scripts/run_sample_eval.mjs --set regression",
+    "scaffold:law-snapshots": "node scripts/scaffold_law_snapshot_versions.mjs",
+    "sync:law-snapshots:from-raw": "node scripts/sync_law_snapshots_from_raw.mjs",
+    "check:source-maintenance": "npm run build && node scripts/check_source_maintenance.mjs",
+    "check:grounding-maintenance": "npm run build && node scripts/check_grounding_maintenance_suite.mjs",
+    "check:policy-index-consistency": "npm run build && node scripts/check_policy_index_consistency.mjs",
+    "check:policy-anchor-regen-diff": "npm run build && node scripts/check_policy_anchor_regen_diff.mjs",
+    "check:law-snapshot-consistency": "npm run build && node scripts/check_law_snapshot_consistency.mjs",
+    "check:law-snapshot-regen-diff": "npm run build && node scripts/check_law_snapshot_regen_diff.mjs",
+    "check:source-integrity-drift": "npm run build && node scripts/check_source_integrity_drift.mjs",
+    "check:source-integrity-manifest-diff": "npm run build && node scripts/check_source_integrity_manifest_diff.mjs",
+    "check:law-citations": "npm run build && node scripts/check_law_citation_readiness.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "agents": "^0.11.4",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "wrangler": "^4.83.0"
+  }
+}

@@ -1,0 +1,115 @@
+[
+  {
+    "id": "high-risk-medical",
+    "description": "의약품 오인과 과장 확정 표현은 BLOCK으로 남아야 한다.",
+    "request": {
+      "productCategory": "cosmetics",
+      "adCopy": "단 7일 만에 기미 치료, 100% 피부 재생을 약속합니다."
+    },
+    "expected": {
+      "verdict": "BLOCK",
+      "mustIncludeCodes": ["COSMETICS_MEDICAL_CLAIM"],
+      "mustExcludeCodes": ["COSMETICS_GENERAL_MISLEADING"],
+      "mustIncludeCitationLabels": [
+        "화장품법 제13조제1항제1호",
+        "화장품 표시·광고 관리 지침"
+      ],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "informational-pass",
+    "description": "정보성 사용 팁은 광고 리스크 없이 PASS로 남아야 한다.",
+    "request": {
+      "productCategory": "cosmetics",
+      "adCopy": "세안 후 보습 크림을 바르는 순서와 사용 팁을 정리했습니다."
+    },
+    "expected": {
+      "verdict": "PASS",
+      "mustIncludeCodes": [],
+      "mustExcludeCodes": [],
+      "mustIncludeCitationLabels": [],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "general-overclaim-unclear",
+    "description": "약한 일반 오인 표현만 감지되면 UNCLEAR로 남아야 한다.",
+    "request": {
+      "productCategory": "cosmetics",
+      "adCopy": "혁신적인 피부 케어 경험을 선사합니다."
+    },
+    "expected": {
+      "verdict": "UNCLEAR",
+      "mustIncludeCodes": ["COSMETICS_GENERAL_MISLEADING"],
+      "mustExcludeCodes": [],
+      "mustIncludeCitationLabels": ["화장품 표시·광고 관리 지침"],
+      "mustIncludeUncertaintyCodes": ["low_classifier_confidence", "weak_evidence_only"]
+    }
+  },
+  {
+    "id": "ranking-claim",
+    "description": "순위 표현은 WARNING으로 남아야 한다.",
+    "request": {
+      "productCategory": "cosmetics",
+      "adCopy": "국내 1위 베스트 크림입니다."
+    },
+    "expected": {
+      "verdict": "WARNING",
+      "mustIncludeCodes": ["COSMETICS_RANKING_CLAIM"],
+      "mustExcludeCodes": [],
+      "mustIncludeCitationLabels": ["화장품 광고자문 기준 및 해설서"],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "expert-endorsement",
+    "description": "전문의 추천 표현은 전문가 보증 이슈로 잡혀야 한다.",
+    "request": {
+      "productCategory": "cosmetics",
+      "adCopy": "전문의 추천 크림으로 소개합니다."
+    },
+    "expected": {
+      "verdict": "WARNING",
+      "mustIncludeCodes": ["COSMETICS_EXPERT_ENDORSEMENT"],
+      "mustExcludeCodes": [],
+      "mustIncludeCitationLabels": ["화장품 광고자문 기준 및 해설서"],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "functional-scope",
+    "description": "신고 범위 안의 보수적 기능성 표현은 PASS로 남아야 한다.",
+    "request": {
+      "productCategory": "cosmetics",
+      "productKind": "functional",
+      "functionalCategories": [
+        "brightening_lightening",
+        "wrinkle_improvement"
+      ],
+      "adCopy": "미백과 주름 개선을 돕는 크림입니다."
+    },
+    "expected": {
+      "verdict": "PASS",
+      "mustIncludeCodes": [],
+      "mustExcludeCodes": ["COSMETICS_FUNCTIONAL_SCOPE"],
+      "mustIncludeCitationLabels": [],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "testimonial-claim",
+    "description": "후기와 before after 표현은 testimonial 이슈로 잡혀야 한다.",
+    "request": {
+      "productCategory": "cosmetics",
+      "adCopy": "사용자 후기와 before after 사진으로 확인하세요."
+    },
+    "expected": {
+      "verdict": "WARNING",
+      "mustIncludeCodes": ["COSMETICS_TESTIMONIAL_CLAIM"],
+      "mustExcludeCodes": [],
+      "mustIncludeCitationLabels": ["화장품 광고자문 기준 및 해설서"],
+      "mustIncludeUncertaintyCodes": []
+    }
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "id": "natural-organic-claim",
+    "description": "천연·유기농 direct claim은 evidence-required bucket에서 WARNING으로 남아야 한다.",
+    "request": {
+      "productCategory": "cosmetics",
+      "adCopy": "천연화장품으로 소개하는 유기농화장품 크림입니다."
+    },
+    "expected": {
+      "verdict": "WARNING",
+      "mustIncludeCodes": ["COSMETICS_NATURAL_ORGANIC_CLAIM"],
+      "mustExcludeCodes": ["COSMETICS_GENERAL_MISLEADING"],
+      "mustIncludeCitationLabels": [
+        "화장품법 제13조제1항제4호",
+        "천연화장품 및 유기농화장품 표시"
+      ],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "vegan-claim",
+    "description": "비건 direct claim은 evidence-required bucket에서 WARNING으로 남아야 한다.",
+    "request": {
+      "productCategory": "cosmetics",
+      "adCopy": "비건 포뮬러로 완성한 데일리 크림입니다."
+    },
+    "expected": {
+      "verdict": "WARNING",
+      "mustIncludeCodes": ["COSMETICS_VEGAN_CLAIM"],
+      "mustExcludeCodes": ["COSMETICS_GENERAL_MISLEADING"],
+      "mustIncludeCitationLabels": [
+        "화장품법 제13조제1항제4호",
+        "비건 관련 표현"
+      ],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "iso-index-claim",
+    "description": "ISO 지수 표현은 evidence-required bucket에서 WARNING으로 남아야 한다.",
+    "request": {
+      "productCategory": "cosmetics",
+      "adCopy": "천연지수 95%(ISO 16128 계산 적용)로 안내하는 보습 크림입니다."
+    },
+    "expected": {
+      "verdict": "WARNING",
+      "mustIncludeCodes": ["COSMETICS_ISO_INDEX_CLAIM"],
+      "mustExcludeCodes": ["COSMETICS_GENERAL_MISLEADING"],
+      "mustIncludeCitationLabels": [
+        "화장품법 제14조제1항",
+        "ISO 천연ㆍ유기농 지수 표시ㆍ광고"
+      ],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "specific-ingredient-free-claim",
+    "description": "특정 성분 무첨가 표현은 evidence-required bucket에서 WARNING으로 남아야 한다.",
+    "request": {
+      "productCategory": "cosmetics",
+      "adCopy": "무(無) 파라벤 포뮬러로 안내하는 보습 크림입니다."
+    },
+    "expected": {
+      "verdict": "WARNING",
+      "mustIncludeCodes": ["COSMETICS_SPECIFIC_INGREDIENT_FREE_CLAIM"],
+      "mustExcludeCodes": ["COSMETICS_BANNED_INGREDIENT_FREE_CLAIM", "COSMETICS_GENERAL_MISLEADING"],
+      "mustIncludeCitationLabels": [
+        "화장품법 제14조제1항",
+        "제품에 특정성분이 들어 있지 않다"
+      ],
+      "mustIncludeUncertaintyCodes": []
+    }
+  },
+  {
+    "id": "patent-fact-claim",
+    "description": "특허 사실 표현은 evidence-required bucket에서 WARNING으로 남아야 한다.",
+    "request": {
+      "productCategory": "cosmetics",
+      "adCopy": "특허 등록 조성물을 적용한 보습 크림입니다."
+    },
+    "expected": {
+      "verdict": "WARNING",
+      "mustIncludeCodes": ["COSMETICS_PATENT_CLAIM"],
+      "mustExcludeCodes": ["COSMETICS_PATENT_OVERCLAIM", "COSMETICS_GENERAL_MISLEADING"],
+      "mustIncludeCitationLabels": [
+        "화장품법 제14조제1항",
+        "특허 관련 표현 시 객관적 사실에 근거하여 표현하여야 한다"
+      ],
+      "mustIncludeUncertaintyCodes": []
+    }
+  }
+]

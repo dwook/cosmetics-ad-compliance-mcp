@@ -1,0 +1,684 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+ <head></head>
+ <body>
+  <input type="hidden" id="lsNm" name="lsNm" value="화장품법 시행령" /> 
+  <input type="hidden" id="lsId" name="lsId" value="005668" /> 
+  <input type="hidden" id="lsiSeq" name="lsiSeq" value="283963" /> 
+  <input type="hidden" id="ancYd" name="ancYd" value="20260310" /> 
+  <input type="hidden" id="efYd" name="efYd" value="20260310" /> 
+  <input type="hidden" id="ancNo" name="ancNo" value="36176" /> 
+  <input type="hidden" id="lsBdyChrCls" name="lsBdyChrCls" value="010202" /> 
+  <input type="hidden" id="lumIsConOrdin" value="" /> 
+  <input type="hidden" id="nwYnValue" value="Y" /> 
+  <input type="hidden" id="hstLnkDpYn" value="0" /> 
+  <style>
+.byl_pop ul li {
+	padding: 7px;
+	margin-left: 10px;
+}
+</style> 
+  <script type="text/javascript">
+$(document).ready(function(){
+	customResizePop(); // 본문 리사이즈
+	initEDotXPress('\uD654\uC7A5\uD488\uBC95 \uC2DC\uD589\uB839');
+});
+
+function customResizePop() {
+		// 본문 버튼 높이 만큼 제공한다. 13은 패딩값
+		var $contentHeight = $("#center").height() - ($('.body_top_area').height() + 13);
+		var $conTopHeight = $('#conTop').height() + 35;
+
+		var bdyValue = lsVO.bdyUpdValue.updateContentNm || 'lsBdy';
+		
+        //lsInfoP 가 열릴 때 본문은 무조건 조회 하기 때문에 조건문 밖에 위치 하도록 변경.
+		$('#viewwrapCenter').css('overflow-y', 'hidden');
+        $('#bodyContentTOP > #viewwrapCenter').height($contentHeight);
+        $('#conScroll').height($('#viewwrapCenter').height() - $conTopHeight);
+        
+        if (bdyValue == 'lsBdy') {
+			/* 본문에서는 법령명 고정 때문에 hidden 처리*/
+			$('#viewwrapCenter').css('overflow-y', 'hidden');
+			$('#bodyContentTOP > #viewwrapCenter').height($contentHeight);
+			if($('#viewwrapCenter2').height() != null || $('#viewwrapCenter2').height() == 0){
+				$('#bodyContentTOP > #viewwrapCenter2').height($contentHeight);
+				$('#conScroll').height($('#viewwrapCenter2').height() - $conTopHeight);
+				$('#viewwrapCenter2').css('overflow', 'hidden');
+			}
+			$('#bodyContent').css('width', 'inherit');
+		} else if (bdyValue == 'lsPtnThdCmp') {
+			lspttnThdCmpResize();
+		} else if (bdyValue == 'lumThdCmp') {
+			thdCmpNewScPResize();
+		} else if (bdyValue == 'lumThdCmpSc') {
+
+		} else if (bdyValue == 'thdCmpNew') {
+
+		} else if (bdyValue == 'lsOldAndNew') {				
+			// 신구법은 이전 이후 버튼 높이까지 마이너스 한다. 
+			$('#bodySideContent > #oldAndNewDiv').height(($contentHeight + $('#tmpWidth').height()-114));
+		} else if (bdyValue == 'lsRvsDocInfoR') {
+
+			$('#bodySideContent > #viewwrapCenter').height($contentHeight);
+			$('#conScroll').height($('#viewwrapCenter').height() - $conTopHeight);
+			$('#conTop').height($('.cont_top').height());
+			$('#rvsConScroll').height($('#viewwrapCenter').height() - $('#rvsConTop').height());
+			
+		} else {
+			$('#bodySideContent > #viewwrapCenter').height($contentHeight);
+		}
+}
+
+function fileLayer(temp){
+	var tempStr = $("#hwptext"+temp).attr("value");
+	if(tempStr.length > 32){
+ 		$("#hwptext"+temp).css("width", "80%").css("text-overflow", "ellipsis").css("overflow","hidden").css("white-space","nowrap");
+ 		$("#hwpxtext"+temp).css("width", "80%").css("text-overflow", "ellipsis").css("overflow","hidden").css("white-space","nowrap");
+ 		$("#pdftext"+temp).css("width", "80%").css("text-overflow", "ellipsis").css("overflow","hidden").css("white-space","nowrap");
+ 	}
+
+ 	$(".byl_pop").css("display","none");
+
+ 	//레이어높이값
+ 	var height = $("#fileSaveLayer"+temp).height();
+ 	//본문 제일 하단 위치값 
+	var pagePos = document.querySelector('#center');
+	pagePos = pagePos.getBoundingClientRect().bottom;
+	//레이어버튼위치값
+	var layPos =document.querySelector('#imgPos'+temp);
+	layPos = layPos.getBoundingClientRect().bottom;
+	var lay_pop = $('#fileSaveLayer'+temp);
+	var pos = $('#imgPos'+temp).position();
+	
+	if(pagePos > height+layPos){ //레이어가 잘리지 않을 때 
+		lay_pop.css('top', (pos.top)+25 + 'px');
+		lay_pop.css('left', '250px')
+	}else{ //레이어가 잘릴 때
+		lay_pop.css('top', ((pos.top)-height)+ 'px');
+		lay_pop.css('left', (pos.left)+25+'px');
+	}
+	document.getElementById("fileSaveLayer"+temp).style.display="block";
+}
+
+function copyToClipBoard(temp2){
+	var content = document.getElementById('textarea'+temp2);
+	content.select();
+	document.execCommand('copy');
+	alert("주소가 클립보드에 저장되었습니다.");
+	content.setSelectionRange(0,0);
+}
+
+function delLayer(temp){
+	document.getElementById("fileSaveLayer"+temp).style.display="none";
+}
+
+</script> 
+  <div id="contentBody" class="scr_ctrl"> 
+   <div id="sideCenter" class="cont_area"> 
+    <ul class="cont_icon"> 
+     <li><a><img alt="판" src="/LSW/images/button/btn_jostmdico.gif" />판례</a></li> 
+     <li><a><img alt="연" src="/LSW/images/button/btn_year3.gif" />연혁</a></li> 
+     <li><a><img alt="행" src="/LSW/images/button/btn_entrust3_2.gif" />위임행정규칙</a></li> 
+     <li><a><img alt="규" src="/LSW/images/button/btn_entrust4_2.gif" />규제</a></li> 
+     <li><a><img alt="한" src="/LSW/images/button/btn_oneviewIcon.gif" />한눈보기</a></li> 
+    </ul> 
+    <!-- 법령명 --> 
+    <div id="conTop" class="cont_top"> 
+     <a id="top"></a> 
+     <!-- 국민신문고 연결배너 출력 --> 
+     <h2> 화장품법 시행령 </h2> 
+     <div class="ct_sub"> 
+      <span>[시행 2026. 3. 10.] [대통령령 제36176호, 2026. 3. 10., 일부개정]</span> 
+     </div> 
+    </div> 
+    <!-- 소관부처 --> 
+    <div id="conScroll" class="scr_area" style="overflow-y: auto;"> 
+     <div class="cont_subtit"> 
+      <p> <a title="팝업으로 이동" onclick="javascript:cptOfiPop('http://www.mfds.go.kr'); return false;" href="#AJAX" target="_blank"><span title="http://www.mfds.go.kr" style="cursor: pointer;">식품의약품안전처</span>(<span title="" style="cursor: pointer;">화장품정책과</span>)</a>, 043-719-3412 </p> 
+     </div> 
+     <!-- 조문정보 --> 
+     <a name="J1:0" id="J1:0"></a> 
+     <div class="pgroup"> 
+      <ul class="lawico01"> 
+       <li><a title="조문체계도 팝업으로 이동" style="text-decoration: none;" onclick="javascript:joStmdPop('283963', '0001', '00' );return false; " href="#AJAX"> <img alt="조문체계도버튼" src="/LSW/images/button/btn_jostmdico.gif" /> </a></li> 
+       <li><a title="연혁 팝업으로 이동" style="text-decoration: none;" onclick="javascript:fJoHstShow(this, '005668', '283963', '96917185', '010202');return false;" href="#AJAX"> <img alt="연혁" src="/LSW/images/button/btn_year3.gif" /> </a></li> 
+      </ul> 
+      <div class="lawcon"> 
+       <p class="pty1_p4"> <input name="joNoList" id="Y000100" style="vertical-align: middle;" onclick="javascript:getJoSelectLayer(this,'');" type="checkbox" value="1:0:000100:96917185" /> <span class="bl"><label for="Y000100"> 제1조(목적) </label> </span> 이 영은 「화장품법」에서 위임된 사항과 그 시행에 필요한 사항을규정함을 목적으로 한다. <span class="sfon">&lt;개정 2012. 2. 3.&gt;</span> </p> 
+      </div> 
+     </div> 
+     <a name="J2:0" id="J2:0"></a> 
+     <div class="pgroup"> 
+      <ul class="lawico01"> 
+       <li><a title="조문체계도 팝업으로 이동" style="text-decoration: none;" onclick="javascript:joStmdPop('283963', '0002', '00' );return false; " href="#AJAX"> <img alt="조문체계도버튼" src="/LSW/images/button/btn_jostmdico.gif" /> </a></li> 
+       <li><a title="연혁 팝업으로 이동" style="text-decoration: none;" onclick="javascript:fJoHstShow(this, '005668', '283963', '96917187', '010202');return false;" href="#AJAX"> <img alt="연혁" src="/LSW/images/button/btn_year3.gif" /> </a></li> 
+      </ul> 
+      <div class="lawcon"> 
+       <p class="pty1_p4"> <input name="joNoList" id="Y000200" style="vertical-align: middle;" onclick="javascript:getJoSelectLayer(this,'');" type="checkbox" value="2:0:000200:96917187" /> <span class="bl"><label for="Y000200"> 제2조(영업의 세부 종류와 범위) </label> </span> 「화장품법」(이하 “법”이라 한다) 제2조의2제1항에 따른 화장품 영업의 세부 종류와 그 범위는 다음 각 호와 같다. </p>
+       <p class="pty1_de2_1"> </p> 
+       <p class="pty1_de2h">1. 화장품제조업: 다음 각 목의 구분에 따른 영업 </p> 
+       <p class="pty1_de3">가. 화장품을 직접 제조하는 영업 <span class="sfon"></span></p> 
+       <p class="pty1_de3">나. 화장품 제조를 위탁받아 제조하는 영업 <span class="sfon"></span></p> 
+       <p class="pty1_de3">다. 화장품의 포장(1차 포장만 해당한다)을 하는 영업 <span class="sfon"></span></p> 
+       <p class="pty1_de2h">2. 화장품책임판매업: 다음 각 목의 구분에 따른 영업 </p> 
+       <p class="pty1_de3">가. 화장품제조업자(법 제3조제1항에 따라 화장품제조업을 등록한 자를 말한다. 이하 같다)가 화장품을 직접 제조하여 유통ㆍ판매하는 영업 <span class="sfon"></span></p> 
+       <p class="pty1_de3">나. 화장품제조업자에게 위탁하여 제조된 화장품을 유통ㆍ판매하는 영업 <span class="sfon"></span></p> 
+       <p class="pty1_de3">다. 수입된 화장품을 유통ㆍ판매하는 영업 <span class="sfon"></span></p> 
+       <p class="pty1_de3">라. 수입대행형 거래(「전자상거래 등에서의 소비자보호에 관한 법률」 제2조제1호에 따른 전자상거래만 해당한다)를 목적으로 화장품을 알선ㆍ수여(授與)하는 영업 <span class="sfon"></span></p> 
+       <p class="pty1_de2h">3. 맞춤형화장품판매업: 다음 각 목의 구분에 따른 영업 </p> 
+       <p class="pty1_de3">가. 제조 또는 수입된 화장품의 내용물에 다른 화장품의 내용물이나 식품의약품안전처장이 정하여 고시하는 원료를 추가하여 혼합한 화장품을 판매하는 영업 <span class="sfon"></span></p> 
+       <p class="pty1_de3">나. 제조 또는 수입된 화장품의 내용물을 소분(小分)한 화장품을 판매하는 영업 <span class="sfon"></span></p> 
+       <p class="pty1_de2"> <span class="sfon">[본조신설 2019. 3. 12.]</span> </p> 
+       <p></p> 
+      </div> 
+     </div> 
+     <a name="J3:0" id="J3:0"></a> 
+     <div class="pgroup"> 
+      <ul class="lawico01"> 
+       <li><a title="조문체계도 팝업으로 이동" style="text-decoration: none;" onclick="javascript:joStmdPop('283963', '0003', '00' );return false; " href="#AJAX"> <img alt="조문체계도버튼" src="/LSW/images/button/btn_jostmdico.gif" /> </a></li> 
+       <li><a title="연혁 팝업으로 이동" style="text-decoration: none;" onclick="javascript:fJoHstShow(this, '005668', '283963', '96917309', '010202');return false;" href="#AJAX"> <img alt="연혁" src="/LSW/images/button/btn_year3.gif" /> </a></li> 
+      </ul> 
+      <div class="lawcon"> 
+       <p class="pty1_p4"> <input name="joNoList" id="Y000300" style="vertical-align: middle;" onclick="javascript:getJoSelectLayer(this,'');" type="checkbox" value="3:0:000300:96917309" /> <span class="bl"><label for="Y000300"> 제3조(화장품의 날 행사 등) </label> </span> ① 국가와 지방자치단체는 법 제2조의3제2항에 따른 화장품의 날 행사를 주간이나 월간으로 정하여 실시할 수 있다. </p>
+       <p class="pty1_de2_1">② 국가와 지방자치단체는 법 제2조의3제2항에 따른 화장품의 날 행사를 실시할 경우 화장품 안전 및 화장품 산업 발전 등에 이바지한 공이 매우 큰 개인이나 단체를 화장품의 날 유공자로 선정하여 포상할 수 있다. </p> 
+       <p class="pty1_de2"> <span class="sfon">[본조신설 2026. 3. 10.]</span> </p> 
+       <p></p> 
+      </div> 
+     </div> 
+     <a name="J4:0" id="J4:0"></a> 
+     <div class="pgroup"> 
+      <ul class="lawico01"> 
+       <li><a title="조문체계도 팝업으로 이동" style="text-decoration: none;" onclick="javascript:joStmdPop('283963', '0004', '00' );return false; " href="#AJAX"> <img alt="조문체계도버튼" src="/LSW/images/button/btn_jostmdico.gif" /> </a></li> 
+       <li><a title="연혁 팝업으로 이동" style="text-decoration: none;" onclick="javascript:fJoHstShow(this, '005668', '283963', '96917311', '010202');return false;" href="#AJAX"> <img alt="연혁" src="/LSW/images/button/btn_year3.gif" /> </a></li> 
+      </ul> 
+      <div class="lawcon"> 
+       <p class="pty1_p4"> <input name="joNoList" id="Y000400" style="vertical-align: middle;" onclick="javascript:getJoSelectLayer(this,'');" type="checkbox" value="4:0:000400:96917311" /> <span class="bl"><label for="Y000400"> 제4조 </label> </span> <input type="hidden" id="delJo96917311" value="삭제" /> 삭제 <span class="sfon">&lt;2012. 2. 3.&gt;</span> </p> 
+      </div> 
+     </div> 
+     <a name="J5:0" id="J5:0"></a> 
+     <div class="pgroup"> 
+      <ul class="lawico01"> 
+       <li><a title="조문체계도 팝업으로 이동" style="text-decoration: none;" onclick="javascript:joStmdPop('283963', '0005', '00' );return false; " href="#AJAX"> <img alt="조문체계도버튼" src="/LSW/images/button/btn_jostmdico.gif" /> </a></li> 
+       <li><a title="연혁 팝업으로 이동" style="text-decoration: none;" onclick="javascript:fJoHstShow(this, '005668', '283963', '96917313', '010202');return false;" href="#AJAX"> <img alt="연혁" src="/LSW/images/button/btn_year3.gif" /> </a></li> 
+      </ul> 
+      <div class="lawcon"> 
+       <p class="pty1_p4"> <input name="joNoList" id="Y000500" style="vertical-align: middle;" onclick="javascript:getJoSelectLayer(this,'');" type="checkbox" value="5:0:000500:96917313" /> <span class="bl"><label for="Y000500"> 제5조 </label> </span> <input type="hidden" id="delJo96917313" value="삭제" /> 삭제 <span class="sfon">&lt;2012. 2. 3.&gt;</span> </p> 
+      </div> 
+     </div> 
+     <a name="J6:0" id="J6:0"></a> 
+     <div class="pgroup"> 
+      <ul class="lawico01"> 
+       <li><a title="조문체계도 팝업으로 이동" style="text-decoration: none;" onclick="javascript:joStmdPop('283963', '0006', '00' );return false; " href="#AJAX"> <img alt="조문체계도버튼" src="/LSW/images/button/btn_jostmdico.gif" /> </a></li> 
+       <li><a title="연혁 팝업으로 이동" style="text-decoration: none;" onclick="javascript:fJoHstShow(this, '005668', '283963', '96917315', '010202');return false;" href="#AJAX"> <img alt="연혁" src="/LSW/images/button/btn_year3.gif" /> </a></li> 
+      </ul> 
+      <div class="lawcon"> 
+       <p class="pty1_p4"> <input name="joNoList" id="Y000600" style="vertical-align: middle;" onclick="javascript:getJoSelectLayer(this,'');" type="checkbox" value="6:0:000600:96917315" /> <span class="bl"><label for="Y000600"> 제6조 </label> </span> <input type="hidden" id="delJo96917315" value="삭제" /> 삭제 <span class="sfon">&lt;2012. 2. 3.&gt;</span> </p> 
+      </div> 
+     </div> 
+     <a name="J7:0" id="J7:0"></a> 
+     <div class="pgroup"> 
+      <ul class="lawico01"> 
+       <li><a title="조문체계도 팝업으로 이동" style="text-decoration: none;" onclick="javascript:joStmdPop('283963', '0007', '00' );return false; " href="#AJAX"> <img alt="조문체계도버튼" src="/LSW/images/button/btn_jostmdico.gif" /> </a></li> 
+       <li><a title="연혁 팝업으로 이동" style="text-decoration: none;" onclick="javascript:fJoHstShow(this, '005668', '283963', '96917317', '010202');return false;" href="#AJAX"> <img alt="연혁" src="/LSW/images/button/btn_year3.gif" /> </a></li> 
+      </ul> 
+      <div class="lawcon"> 
+       <p class="pty1_p4"> <input name="joNoList" id="Y000700" style="vertical-align: middle;" onclick="javascript:getJoSelectLayer(this,'');" type="checkbox" value="7:0:000700:96917317" /> <span class="bl"><label for="Y000700"> 제7조 </label> </span> <input type="hidden" id="delJo96917317" value="삭제" /> 삭제 <span class="sfon">&lt;2012. 2. 3.&gt;</span> </p> 
+      </div> 
+     </div> 
+     <a name="J8:0" id="J8:0"></a> 
+     <div class="pgroup"> 
+      <ul class="lawico01"> 
+       <li><a title="조문체계도 팝업으로 이동" style="text-decoration: none;" onclick="javascript:joStmdPop('283963', '0008', '00' );return false; " href="#AJAX"> <img alt="조문체계도버튼" src="/LSW/images/button/btn_jostmdico.gif" /> </a></li> 
+       <li><a title="연혁 팝업으로 이동" style="text-decoration: none;" onclick="javascript:fJoHstShow(this, '005668', '283963', '96917319', '010202');return false;" href="#AJAX"> <img alt="연혁" src="/LSW/images/button/btn_year3.gif" /> </a></li> 
+      </ul> 
+      <div class="lawcon"> 
+       <p class="pty1_p4"> <input name="joNoList" id="Y000800" style="vertical-align: middle;" onclick="javascript:getJoSelectLayer(this,'');" type="checkbox" value="8:0:000800:96917319" /> <span class="bl"><label for="Y000800"> 제8조 </label> </span> <input type="hidden" id="delJo96917319" value="삭제" /> 삭제 <span class="sfon">&lt;2012. 2. 3.&gt;</span> </p> 
+      </div> 
+     </div> 
+     <a name="J9:0" id="J9:0"></a> 
+     <div class="pgroup"> 
+      <ul class="lawico01"> 
+       <li><a title="조문체계도 팝업으로 이동" style="text-decoration: none;" onclick="javascript:joStmdPop('283963', '0009', '00' );return false; " href="#AJAX"> <img alt="조문체계도버튼" src="/LSW/images/button/btn_jostmdico.gif" /> </a></li> 
+       <li><a title="연혁 팝업으로 이동" style="text-decoration: none;" onclick="javascript:fJoHstShow(this, '005668', '283963', '96917321', '010202');return false;" href="#AJAX"> <img alt="연혁" src="/LSW/images/button/btn_year3.gif" /> </a></li> 
+      </ul> 
+      <div class="lawcon"> 
+       <p class="pty1_p4"> <input name="joNoList" id="Y000900" style="vertical-align: middle;" onclick="javascript:getJoSelectLayer(this,'');" type="checkbox" value="9:0:000900:96917321" /> <span class="bl"><label for="Y000900"> 제9조 </label> </span> <input type="hidden" id="delJo96917321" value="삭제" /> 삭제 <span class="sfon">&lt;2012. 2. 3.&gt;</span> </p> 
+      </div> 
+     </div> 
+     <a name="J10:0" id="J10:0"></a> 
+     <div class="pgroup"> 
+      <ul class="lawico01"> 
+       <li><a title="조문체계도 팝업으로 이동" style="text-decoration: none;" onclick="javascript:joStmdPop('283963', '0010', '00' );return false; " href="#AJAX"> <img alt="조문체계도버튼" src="/LSW/images/button/btn_jostmdico.gif" /> </a></li> 
+       <li><a title="연혁 팝업으로 이동" style="text-decoration: none;" onclick="javascript:fJoHstShow(this, '005668', '283963', '96917323', '010202');return false;" href="#AJAX"> <img alt="연혁" src="/LSW/images/button/btn_year3.gif" /> </a></li> 
+      </ul> 
+      <div class="lawcon"> 
+       <p class="pty1_p4"> <input name="joNoList" id="Y001000" style="vertical-align: middle;" onclick="javascript:getJoSelectLayer(this,'');" type="checkbox" value="10:0:001000:96917323" /> <span class="bl"><label for="Y001000"> 제10조 </label> </span> <input type="hidden" id="delJo96917323" value="삭제" /> 삭제 <span class="sfon">&lt;2012. 2. 3.&gt;</span> </p> 
+      </div> 
+     </div> 
+     <a name="J11:0" id="J11:0"></a> 
+     <div class="pgroup"> 
+      <ul class="lawico01"> 
+       <li><a title="조문체계도 팝업으로 이동" style="text-decoration: none;" onclick="javascript:joStmdPop('283963', '0011', '00' );return false; " href="#AJAX"> <img alt="조문체계도버튼" src="/LSW/images/button/btn_jostmdico.gif" /> </a></li> 
+       <li><a title="연혁 팝업으로 이동" style="text-decoration: none;" onclick="javascript:fJoHstShow(this, '005668', '283963', '96917325', '010202');return false;" href="#AJAX"> <img alt="연혁" src="/LSW/images/button/btn_year3.gif" /> </a></li> 
+      </ul> 
+      <div class="lawcon"> 
+       <p class="pty1_p4"> <input name="joNoList" id="Y001100" style="vertical-align: middle;" onclick="javascript:getJoSelectLayer(this,'');" type="checkbox" value="11:0:001100:96917325" /> <span class="bl"><label for="Y001100"> 제11조(과징금의 산정기준) </label> </span> 법 제28조제1항에 따른 과징금의 금액은 위반행위의 종류ㆍ정도 등을 고려하여 총리령으로 정하는 업무정지처분기준에 따라 별표 1의 기준을 적용하여 산정하되, 과징금의 총액은 10억원을 초과하여서는 아니된다. <span class="sfon">&lt;개정 2008. 2. 29., 2010. 3. 15., 2012. 2. 3., 2013. 3. 23., 2019. 3. 12., 2019. 12. 10.&gt;</span> </p> 
+      </div> 
+     </div> 
+     <a name="J12:0" id="J12:0"></a> 
+     <div class="pgroup"> 
+      <ul class="lawico01"> 
+       <li><a title="조문체계도 팝업으로 이동" style="text-decoration: none;" onclick="javascript:joStmdPop('283963', '0012', '00' );return false; " href="#AJAX"> <img alt="조문체계도버튼" src="/LSW/images/button/btn_jostmdico.gif" /> </a></li> 
+       <li><a title="연혁 팝업으로 이동" style="text-decoration: none;" onclick="javascript:fJoHstShow(this, '005668', '283963', '96917327', '010202');return false;" href="#AJAX"> <img alt="연혁" src="/LSW/images/button/btn_year3.gif" /> </a></li> 
+      </ul> 
+      <div class="lawcon"> 
+       <p class="pty1_p4"> <input name="joNoList" id="Y001200" style="vertical-align: middle;" onclick="javascript:getJoSelectLayer(this,'');" type="checkbox" value="12:0:001200:96917327" /> <span class="bl"><label for="Y001200"> 제12조(과징금의 부과ㆍ징수절차) </label> </span> ① 법 제28조에 따라 식품의약품안전처장이 과징금을 부과하려면 그 위반행위의 종류와 과징금의 금액 등을 적은 서면으로 통지하여야 한다. <span class="sfon">&lt;개정 2012. 2. 3., 2013. 3. 23.&gt;</span> </p>
+       <p class="pty1_de2_1">②과징금의 징수절차는 총리령으로 정한다. <span class="sfon">&lt;개정 2008. 2. 29., 2010. 3. 15., 2013. 3. 23.&gt;</span> </p> 
+       <p></p> 
+      </div> 
+     </div> 
+     <a name="J12:2" id="J12:2"></a> 
+     <div class="pgroup"> 
+      <ul class="lawico01"> 
+       <li><a title="조문체계도 팝업으로 이동" style="text-decoration: none;" onclick="javascript:joStmdPop('283963', '0012', '02' );return false; " href="#AJAX"> <img alt="조문체계도버튼" src="/LSW/images/button/btn_jostmdico.gif" /> </a></li> 
+       <li><a title="연혁 팝업으로 이동" style="text-decoration: none;" onclick="javascript:fJoHstShow(this, '005668', '283963', '96917329', '010202');return false;" href="#AJAX"> <img alt="연혁" src="/LSW/images/button/btn_year3.gif" /> </a></li> 
+      </ul> 
+      <div class="lawcon"> 
+       <p class="pty1_p4"> <input name="joNoList" id="Y001202" style="vertical-align: middle;" onclick="javascript:getJoSelectLayer(this,'');" type="checkbox" value="12:2:001202:96917329" /> <span class="bl"><label for="Y001202"> 제12조의2(과징금의 납부기한 연기 및 분할 납부) </label> </span> ① 식품의약품안전처장은 법 제28조제1항에 따라 과징금을 부과받은 자가 납부해야 하는 과징금의 금액이 100만원 이상인 경우에는 「행정기본법」 제29조 단서에 따라 과징금의 납부기한을 연기하거나 분할 납부하게 할 수 있다. <span class="sfon">&lt;개정 2023. 12. 12.&gt;</span> </p>
+       <p class="pty1_de2_1">② 삭제 <span class="sfon">&lt;2023. 12. 12.&gt;</span> </p> 
+       <p class="pty1_de2_1">③ 제1항에 따라 과징금의 납부기한을 연기하는 경우 그 기한은 납부기한의 다음 날부터 1년 이내로 한다. </p> 
+       <p class="pty1_de2_1">④ 제1항에 따라 과징금을 분할납부하게 하는 경우 각 분할된 납부기한 간의 간격은 4개월 이내로 하고, 분할납부의 횟수는 3회 이내로 한다. </p> 
+       <p class="pty1_de2_1">⑤ 삭제 <span class="sfon">&lt;2023. 12. 12.&gt;</span> </p> 
+       <p class="pty1_de2"> <span class="sfon">[본조신설 2021. 4. 27.]<br />[제목개정 2023. 12. 12.]<br />[종전 제12조의2는 제12조의3으로 이동 &lt;2021. 4. 27.&gt;]</span> </p> 
+       <p></p> 
+      </div> 
+     </div> 
+     <a name="J12:3" id="J12:3"></a> 
+     <div class="pgroup"> 
+      <ul class="lawico01"> 
+       <li><a title="조문체계도 팝업으로 이동" style="text-decoration: none;" onclick="javascript:joStmdPop('283963', '0012', '03' );return false; " href="#AJAX"> <img alt="조문체계도버튼" src="/LSW/images/button/btn_jostmdico.gif" /> </a></li> 
+      </ul> 
+      <div class="lawcon"> 
+       <p class="pty1_p4"> <input name="joNoList" id="Y001203" style="vertical-align: middle;" onclick="javascript:getJoSelectLayer(this,'');" type="checkbox" value="12:3:001203:96917331" /> <span class="bl"><label for="Y001203"> 제12조의3(과징금 미납자에 대한 처분) </label> </span> ①식품의약품안전처장은 과징금납부의무자가 납부기한(제12조의2제5항에 따라 분할납부 결정을 취소한 경우에는 해당 과징금을 한꺼번에 내도록 한 기한을 말한다)까지 과징금을 내지 않으면 납부기한이 지난 후 15일 이내에 독촉장을 발급해야 한다. 이 경우 납부기한은 독촉장을 발급하는 날부터 10일 이내로 해야 한다. <span class="sfon">&lt;개정 2012. 2. 3., 2013. 3. 23., 2019. 3. 12., 2021. 4. 27.&gt;</span> </p>
+       <p class="pty1_de2_1">② 식품의약품안전처장은 과징금납부의무자가 제1항에 따른 독촉장을 받고도 납부기한까지 과징금을 내지 않으면 과징금부과처분을 취소하고 업무정지처분을 해야 한다. 다만, 법 제28조제4항 단서에 해당하는 경우에는 국세 체납처분의 예에 따라 징수해야 한다. <span class="sfon">&lt;개정 2014. 11. 4., 2019. 3. 12., 2021. 4. 27.&gt;</span> </p> 
+       <p class="pty1_de2_1">③제2항 본문에 따라 과징금 부과처분을 취소하고 업무정지처분을 하려면 처분대상자에게 서면으로 그 내용을 통지하되, 서면에는 처분이 변경된 사유와 업무정지처분의 기간 등 업무정지처분에 필요한 사항을 적어야 한다. <span class="sfon">&lt;개정 2012. 2. 3., 2014. 11. 4.&gt;</span> </p> 
+       <p class="pty1_de2"> <span class="sfon">[본조신설 2007. 7. 3.]<br />[제12조의2에서 이동 &lt;2021. 4. 27.&gt;]</span> </p> 
+       <p></p> 
+      </div> 
+     </div> 
+     <a name="J13:0" id="J13:0"></a> 
+     <div class="pgroup"> 
+      <ul class="lawico01"> 
+       <li><a title="조문체계도 팝업으로 이동" style="text-decoration: none;" onclick="javascript:joStmdPop('283963', '0013', '00' );return false; " href="#AJAX"> <img alt="조문체계도버튼" src="/LSW/images/button/btn_jostmdico.gif" /> </a></li> 
+       <li><a title="연혁 팝업으로 이동" style="text-decoration: none;" onclick="javascript:fJoHstShow(this, '005668', '283963', '96917333', '010202');return false;" href="#AJAX"> <img alt="연혁" src="/LSW/images/button/btn_year3.gif" /> </a></li> 
+      </ul> 
+      <div class="lawcon"> 
+       <p class="pty1_p4"> <input name="joNoList" id="Y001300" style="vertical-align: middle;" onclick="javascript:getJoSelectLayer(this,'');" type="checkbox" value="13:0:001300:96917333" /> <span class="bl"><label for="Y001300"> 제13조(위반사실의 공표) </label> </span> ① 법 제28조의2제1항에서 “대통령령으로 정하는 사항”이란 다음 각 호의 사항을 말한다. </p>
+       <p class="pty1_de2h">1. 처분 사유 </p> 
+       <p class="pty1_de2h">2. 처분 내용 </p> 
+       <p class="pty1_de2h">3. 처분 대상자의 명칭ㆍ주소 및 대표자 성명 </p> 
+       <p class="pty1_de2h">4. 해당 품목의 명칭 및 제조번호 </p> 
+       <p class="pty1_de2_1">② 법 제28조의2제1항에 따른 공표는 식품의약품안전처의 인터넷 홈페이지에 게재하는 방법으로 한다. </p> 
+       <p class="pty1_de2"> <span class="sfon">[본조신설 2015. 7. 24.]</span> </p> 
+       <p></p> 
+      </div> 
+     </div> 
+     <a name="J14:0" id="J14:0"></a> 
+     <div class="pgroup"> 
+      <ul class="lawico01"> 
+       <li><a title="조문체계도 팝업으로 이동" style="text-decoration: none;" onclick="javascript:joStmdPop('283963', '0014', '00' );return false; " href="#AJAX"> <img alt="조문체계도버튼" src="/LSW/images/button/btn_jostmdico.gif" /> </a></li> 
+       <li><a title="연혁 팝업으로 이동" style="text-decoration: none;" onclick="javascript:fJoHstShow(this, '005668', '283963', '96917335', '010202');return false;" href="#AJAX"> <img alt="연혁" src="/LSW/images/button/btn_year3.gif" /> </a></li> 
+      </ul> 
+      <div class="lawcon"> 
+       <p class="pty1_p4"> <input name="joNoList" id="Y001400" style="vertical-align: middle;" onclick="javascript:getJoSelectLayer(this,'');" type="checkbox" value="14:0:001400:96917335" /> <span class="bl"><label for="Y001400"> 제14조(권한의 위임) </label> </span> 법 제34조제1항에 따라 식품의약품안전처장은 다음 각 호의 권한을 지방식품의약품안전청장에게 위임한다. <span class="sfon">&lt;개정 2012. 2. 3., 2013. 3. 23., 2014. 11. 4., 2015. 7. 24., 2017. 1. 31., 2019. 3. 12., 2021. 4. 27., 2022. 2. 15.&gt;</span> </p>
+       <p class="pty1_de2_1"> </p> 
+       <p class="pty1_de2h">1. 법 제3조에 따른 화장품제조업 또는 화장품책임판매업의 등록 및 변경등록 </p> 
+       <p class="pty1_de2h">1의2. 법 제3조의2제1항에 따른 맞춤형화장품판매업의 신고 및 변경신고의 수리 </p> 
+       <p class="pty1_de2h">1의3. 법 제5조제8항에 따른 화장품제조업자, 화장품책임판매업자 및 맞춤형화장품판매업자(이하 “영업자”라 한다)에 대한 교육명령 </p> 
+       <p class="pty1_de2h">1의4. 법 제5조의2제2항에 따른 회수계획 보고의 접수 및 같은 조 제3항에 따른 행정처분의 감경ㆍ면제 </p> 
+       <p class="pty1_de2h">2. 법 제6조에 따른 폐업 등의 신고에 관한 다음 각 목의 권한 </p> 
+       <p class="pty1_de3">가. 법 제6조제1항 각 호에 따른 신고의 수리 <span class="sfon"></span></p> 
+       <p class="pty1_de3">나. 법 제6조제2항에 따른 등록의 취소 <span class="sfon"></span></p> 
+       <p class="pty1_de3">다. 법 제6조제3항에 따른 정보 제공의 요청 <span class="sfon"></span></p> 
+       <p class="pty1_de3">라. 법 제6조제4항에 따른 통지 <span class="sfon"></span></p> 
+       <p class="pty1_de2h">2의2. 법 제14조에 따른 표시ㆍ광고 내용의 실증 등에 관한 다음 각 목의 권한 </p> 
+       <p class="pty1_de3">가. 법 제14조제2항에 따른 자료의 제출 요청 <span class="sfon"></span></p> 
+       <p class="pty1_de3">나. 법 제14조제3항에 따른 자료의 접수 및 제출기간의 연장 <span class="sfon"></span></p> 
+       <p class="pty1_de3">다. 법 제14조제4항에 따른 중지 명령 <span class="sfon"></span></p> 
+       <p class="pty1_de3">라. 법 제14조제6항에 따른 다른 기관의 자료요청에 대한 회신 <span class="sfon"></span></p> 
+       <p class="pty1_de2h">3. 법 제18조에 따른 보고명령ㆍ출입ㆍ검사ㆍ질문 및 수거 </p> 
+       <p class="pty1_de2h">3의2. 법 제18조의2에 따른 소비자화장품안전관리감시원의 위촉ㆍ해촉 및 교육 </p> 
+       <p class="pty1_de2h">3의3. 다음 각 목의 경우에 대한 법 제19조에 따른 시정명령 </p> 
+       <p class="pty1_de3">가. 법 제3조제1항 후단에 따른 변경등록을 하지 않은 경우 <span class="sfon"></span></p> 
+       <p class="pty1_de3">나. 법 제3조의2제1항 후단에 따른 변경신고를 하지 않은 경우 <span class="sfon"></span></p> 
+       <p class="pty1_de3">다. 법 제5조제8항에 따른 교육명령을 위반한 경우 <span class="sfon"></span></p> 
+       <p class="pty1_de3">라. 법 제6조제1항에 따른 폐업 또는 휴업신고나 휴업 후 재개신고를 하지 않은 경우 <span class="sfon"></span></p> 
+       <p class="pty1_de2h">4. 법 제20조에 따른 검사명령 </p> 
+       <p class="pty1_de2h">5. 법 제22조에 따른 개수명령 및 시설의 전부 또는 일부의 사용금지명령 </p> 
+       <p class="pty1_de2h">6. 법 제23조에 따른 회수ㆍ폐기 등의 명령, 회수계획 보고의 접수와 폐기 또는 그 밖에 필요한 처분 </p> 
+       <p class="pty1_de2h">6의2. 법 제23조의2에 따른 공표명령 </p> 
+       <p class="pty1_de2h">7. 법 제24조에 따른 등록의 취소, 영업소의 폐쇄명령, 품목의 제조ㆍ수입 및 판매의 금지명령, 업무의 전부 또는 일부에 대한 정지명령 </p> 
+       <p class="pty1_de2h">8. 법 제27조에 따른 청문 </p> 
+       <p class="pty1_de2h">9. 법 제28조에 따른 과징금의 부과ㆍ징수 </p> 
+       <p class="pty1_de2h">9의2. 법 제28조의2에 따른 공표 </p> 
+       <p class="pty1_de2h">10. 법 제31조에 따른 등록필증ㆍ신고필증의 재교부 </p> 
+       <p class="pty1_de2h">11. 법 제40조제1항에 따른 과태료의 부과ㆍ징수 </p> 
+       <p class="pty1_de2"> <span class="sfon">[본조신설 2007. 7. 3.]</span> </p> 
+       <p></p> 
+      </div> 
+     </div> 
+     <a name="J15:0" id="J15:0"></a> 
+     <div class="pgroup"> 
+      <ul class="lawico01"> 
+       <li><a title="조문체계도 팝업으로 이동" style="text-decoration: none;" onclick="javascript:joStmdPop('283963', '0015', '00' );return false; " href="#AJAX"> <img alt="조문체계도버튼" src="/LSW/images/button/btn_jostmdico.gif" /> </a></li> 
+       <li><a title="연혁 팝업으로 이동" style="text-decoration: none;" onclick="javascript:fJoHstShow(this, '005668', '283963', '96917337', '010202');return false;" href="#AJAX"> <img alt="연혁" src="/LSW/images/button/btn_year3.gif" /> </a></li> 
+      </ul> 
+      <div class="lawcon"> 
+       <p class="pty1_p4"> <input name="joNoList" id="Y001500" style="vertical-align: middle;" onclick="javascript:getJoSelectLayer(this,'');" type="checkbox" value="15:0:001500:96917337" /> <span class="bl"><label for="Y001500"> 제15조(민감정보 및 고유식별정보의 처리) </label> </span> 식품의약품안전처장(제14조에 따라 식품의약품안전처장의 권한을 위임받은 자 또는 법 제3조의4제3항에 따라 자격시험 관리 및 자격증 발급 등에 관한 업무를 위탁받은 자를 포함한다)은 다음 각 호의 사무를 수행하기 위하여 불가피한 경우 「개인정보 보호법」 제23조에 따른 건강에 관한 정보(이하 “건강정보”라 한다), 같은 법 시행령 제18조제2호에 따른 범죄경력자료에 해당하는 정보(이하 “범죄경력정보”라 한다), 같은 영 제19조제1호 또는 제4호에 따른 주민등록번호 또는 외국인등록번호가 포함된 자료를 처리할 수 있다. 다만, 제2호, 제5호 및 제6호의 사무의 경우에는 범죄경력정보는 제외하고, 제3호 및 제11호의 사무의 경우에는 건강정보와 범죄경력정보는 제외한다. <span class="sfon">&lt;개정 2012. 2. 3., 2013. 3. 23., 2015. 7. 24., 2019. 3. 12., 2019. 12. 10., 2022. 2. 15., 2022. 12. 20.&gt;</span> </p>
+       <p class="pty1_de2_1"> </p> 
+       <p class="pty1_de2h">1. 법 제3조에 따른 화장품제조업 또는 화장품책임판매업의 등록 및 변경등록에 관한 사무 </p> 
+       <p class="pty1_de2h">1의2. 법 제3조의2제1항에 따른 맞춤형화장품판매업의 신고 및 변경신고에 관한 사무 </p> 
+       <p class="pty1_de2h">1의3. 법 제3조의4제1항 및 제4항에 따른 맞춤형화장품조제관리사 자격시험 관리 및 자격증 발급ㆍ재발급에 관한 사무 </p> 
+       <p class="pty1_de2h">2. 법 제4조에 따른 기능성화장품의 심사 등에 관한 사무 </p> 
+       <p class="pty1_de2h">3. 법 제6조에 따른 폐업 등의 신고에 관한 사무 </p> 
+       <p class="pty1_de2h">4. 법 제18조에 따른 보고와 검사 등에 관한 사무 </p> 
+       <p class="pty1_de2h">4의2. 법 제19조에 따른 시정명령에 관한 사무 </p> 
+       <p class="pty1_de2h">5. 법 제20조에 따른 검사명령에 관한 사무 </p> 
+       <p class="pty1_de2h">6. 법 제22조에 따른 개수명령 및 시설의 전부 또는 일부의 사용금지명령에 관한 사무 </p> 
+       <p class="pty1_de2h">7. 법 제23조에 따른 회수ㆍ폐기 등의 명령과 폐기 또는 그 밖에 필요한 처분에 관한 사무 </p> 
+       <p class="pty1_de2h">8. 법 제24조에 따른 등록의 취소, 영업소의 폐쇄명령, 품목의 제조ㆍ수입 및 판매의 금지명령, 업무의 전부 또는 일부에 대한 정지명령에 관한 사무 </p> 
+       <p class="pty1_de2h">9. 법 제27조에 따른 청문에 관한 사무 </p> 
+       <p class="pty1_de2h">10. 법 제28조에 따른 과징금의 부과ㆍ징수에 관한 사무 </p> 
+       <p class="pty1_de2h">11. 법 제31조에 따른 등록필증 등의 재교부에 관한 사무 </p> 
+       <p class="pty1_de2"> <span class="sfon">[본조신설 2012. 1. 6.]</span> </p> 
+       <p></p> 
+      </div> 
+     </div> 
+     <a name="J16:0" id="J16:0"></a> 
+     <div class="pgroup"> 
+      <ul class="lawico01"> 
+       <li><a title="조문체계도 팝업으로 이동" style="text-decoration: none;" onclick="javascript:joStmdPop('283963', '0016', '00' );return false; " href="#AJAX"> <img alt="조문체계도버튼" src="/LSW/images/button/btn_jostmdico.gif" /> </a></li> 
+       <li><a title="연혁 팝업으로 이동" style="text-decoration: none;" onclick="javascript:fJoHstShow(this, '005668', '283963', '96917339', '010202');return false;" href="#AJAX"> <img alt="연혁" src="/LSW/images/button/btn_year3.gif" /> </a></li> 
+      </ul> 
+      <div class="lawcon"> 
+       <p class="pty1_p4"> <input name="joNoList" id="Y001600" style="vertical-align: middle;" onclick="javascript:getJoSelectLayer(this,'');" type="checkbox" value="16:0:001600:96917339" /> <span class="bl"><label for="Y001600"> 제16조(과태료의 부과기준) </label> </span> 법 제40조제1항에 따른 과태료의 부과기준은 별표 2와 같다. <span class="sfon">&lt;개정 2019. 3. 12.&gt;</span> </p>
+       <p class="pty1_de2"> <span class="sfon">[전문개정 2012. 2. 3.]<br />[제13조에서 이동 &lt;2012. 2. 3.&gt;]</span> </p> 
+       <p></p> 
+      </div> 
+     </div> 
+     <!-- 조문정보 --> 
+     <!-- 부칙 영역 끝 --> 
+     <br /> 
+     <div id="arDivArea"> 
+      <a name="arArea"></a> 
+      <a name="J12456729" id="J12456729"></a> 
+      <div class="pgroup"> 
+       <p class="pty3" style="margin-bottom: -1px;"> <img id="ar12456729btn" style="vertical-align: middle;" alt="부칙<대통령령 제16869호, 2000. 6. 27.>조문목록 없음" src="/LSW/images/button/btn_dot.gif" /> <input name="arInf" id="chk12456729" style="vertical-align: middle;" type="checkbox" alt="부칙 <대통령령 제16869호, 2000. 6. 27.>체크박스 " value="12456729" /> <a class="nun" onclick="javascript:arView('ar12456729','<대통령령 제16869호, 2000. 6. 27.>'); return false;" href="#AJAX"> <label for="chk12456729"> <span class="bl"> 부      칙</span> </label> <span class="sfon">&lt;대통령령 제16869호, 2000. 6. 27.&gt;</span> </a> </p> 
+       <p class="pty3_dep1">이 영은 2000년 7월 1일부터 시행한다.</p> 
+      </div> 
+      <a name="J12456731" id="J12456731"></a> 
+      <div class="pgroup"> 
+       <p class="pty3" style="margin-bottom: -1px;"> <img id="ar12456731btn" style="vertical-align: middle;" alt="부칙<대통령령 제20158호, 2007. 7. 3.>조문목록 없음" src="/LSW/images/button/btn_dot.gif" /> <input name="arInf" id="chk12456731" style="vertical-align: middle;" type="checkbox" alt="부칙 <대통령령 제20158호, 2007. 7. 3.>체크박스 " value="12456731" /> <a class="nun" onclick="javascript:arView('ar12456731','<대통령령 제20158호, 2007. 7. 3.>'); return false;" href="#AJAX"> <label for="chk12456731"> <span class="bl"> 부      칙</span> </label> <span class="sfon">&lt;대통령령 제20158호, 2007. 7. 3.&gt;</span> </a> </p> 
+       <p class="pty3_dep1">이 영은 2007년 7월 4일부터 시행한다.</p> 
+      </div> 
+      <a name="J12456733" id="J12456733"></a> 
+      <div class="pgroup"> 
+       <p class="pty3" style="margin-bottom: -1px;"> <a class="nun" onclick="javascript:arView('ar12456733','<대통령령 제20679호, 2008. 2. 29.>'); return false;" href="#AJAX"> <img id="ar12456733btn" style="vertical-align: middle;" alt="부칙 <대통령령 제20679호, 2008. 2. 29.>조문목록 접기" src="/LSW/images/button/btn_cocl.gif" /> </a> <input name="arInf" id="chk12456733" style="vertical-align: middle;" type="checkbox" alt="부칙 <대통령령 제20679호, 2008. 2. 29.>체크박스 " value="12456733" /> <a class="nun" onclick="javascript:arView('ar12456733','<대통령령 제20679호, 2008. 2. 29.>'); return false;" href="#AJAX"> <label for="chk12456733"> <span class="bl"> 부      칙</span> </label> <span class="sfon">&lt;대통령령 제20679호, 2008. 2. 29.&gt;</span> </a> <a class="nun" onclick="javascript:fncArLawPop('보건복지가족부와 그 소속기관 직제', '20080229', '20679');" href="#AJAX"> <span class="sfon">(보건복지가족부와 그 소속기관 직제) </span> </a> <a class="nun" onclick="javascript:arView('ar12456733','<대통령령 제20679호, 2008. 2. 29.>');return false;" href="#AJAX"> <img id="ar12456733MrBtn" style="vertical-align: middle;" alt="부칙 <대통령령 제20679호, 2008. 2. 29.>보기" src="/LSW/images/button/btn_more_bu.gif" /> </a> </p> 
+       <p class="pty3_dep1"><span class="bl">제1조(시행일)</span> 이 영은 공포한 날부터 시행한다.</p>
+       <div id="ar12456733">
+        <p class="pty3_dep1"><span class="bl">제2조</span> 부터 제8조까지 생략</p>
+        <p class="pty3_dep1"><span class="bl">제9조(다른 법령의 개정)</span> ① 부터 &lt;78&gt; 까지 생략</p>
+        <p class="pty3_dep2"> &lt;79&gt; 화장품법 시행령 일부를 다음과 같이 개정한다.</p>
+        <p class="pty3_dep2"> 제11조, 제12조제2항, 제13조제4항, 별표 2의 과태료처분대상자란 중 “보건복지부령”을 각각 “보건복지가족부령”으로 한다.</p>
+        <p class="pty3_dep2"> &lt;80&gt; 생략</p>
+       </div> 
+      </div> 
+      <a name="J12456735" id="J12456735"></a> 
+      <div class="pgroup"> 
+       <p class="pty3" style="margin-bottom: -1px;"> <a class="nun" onclick="javascript:arView('ar12456735','<대통령령 제22075호,  2010. 3. 15.>'); return false;" href="#AJAX"> <img id="ar12456735btn" style="vertical-align: middle;" alt="부칙 <대통령령 제22075호,  2010. 3. 15.>조문목록 접기" src="/LSW/images/button/btn_cocl.gif" /> </a> <input name="arInf" id="chk12456735" style="vertical-align: middle;" type="checkbox" alt="부칙 <대통령령 제22075호,  2010. 3. 15.>체크박스 " value="12456735" /> <a class="nun" onclick="javascript:arView('ar12456735','<대통령령 제22075호,  2010. 3. 15.>'); return false;" href="#AJAX"> <label for="chk12456735"> <span class="bl"> 부      칙</span> </label> <span class="sfon">&lt;대통령령 제22075호, 2010. 3. 15.&gt;</span> </a> <a class="nun" onclick="javascript:fncArLawPop('보건복지부와 그 소속기관 직제', '20100315', '22075');" href="#AJAX"> <span class="sfon">(보건복지부와 그 소속기관 직제) </span> </a> <a class="nun" onclick="javascript:arView('ar12456735','<대통령령 제22075호,  2010. 3. 15.>');return false;" href="#AJAX"> <img id="ar12456735MrBtn" style="vertical-align: middle;" alt="부칙 <대통령령 제22075호,  2010. 3. 15.>보기" src="/LSW/images/button/btn_more_bu.gif" /> </a> </p> 
+       <p class="pty3_dep1"><span class="bl">제1조(시행일)</span> 이 영은 2010년 3월 19일부터 시행한다. &lt;단서 생략&gt;</p>
+       <div id="ar12456735">
+        <p class="pty3_dep1"><span class="bl">제2조(다른 법령의 개정)</span> ① 부터 &lt;182&gt; 까지 생략</p>
+        <p class="pty3_dep2"> &lt;183&gt; 화장품법 시행령 일부를 다음과 같이 개정한다.</p>
+        <p class="pty3_dep2"> 제11조, 제12조제2항, 제13조제4항 및 별표 2의 과태료처분대상자란 중 “보건복지가족부령”을 각각 “보건복지부령”으로 한다.</p>
+        <p class="pty3_dep2"> &lt;184&gt; 부터 &lt;187&gt; 까지 생략</p>
+       </div> 
+      </div> 
+      <a name="J12456737" id="J12456737"></a> 
+      <div class="pgroup"> 
+       <p class="pty3" style="margin-bottom: -1px;"> <a class="nun" onclick="javascript:arView('ar12456737','<대통령령 제23488호, 2012. 1. 6.>'); return false;" href="#AJAX"> <img id="ar12456737btn" style="vertical-align: middle;" alt="부칙 <대통령령 제23488호, 2012. 1. 6.>조문목록 접기" src="/LSW/images/button/btn_cocl.gif" /> </a> <input name="arInf" id="chk12456737" style="vertical-align: middle;" type="checkbox" alt="부칙 <대통령령 제23488호, 2012. 1. 6.>체크박스 " value="12456737" /> <a class="nun" onclick="javascript:arView('ar12456737','<대통령령 제23488호, 2012. 1. 6.>'); return false;" href="#AJAX"> <label for="chk12456737"> <span class="bl"> 부      칙</span> </label> <span class="sfon">&lt;대통령령 제23488호, 2012. 1. 6.&gt;</span> </a> <a class="nun" onclick="javascript:fncArLawPop('민감정보 및 고유식별정보 처리 근거 마련을 위한 과세자료의 제출 및 관리에 관한 법률 시행령 등 일부개정령', '20120106', '23488');" href="#AJAX"> <span class="sfon">(민감정보 및 고유식별정보 처리 근거 마련을 위한 과세자료의 제출 및 관리에 관한 법률 시행령 등 일부개정령) </span> </a> <a class="nun" onclick="javascript:arView('ar12456737','<대통령령 제23488호, 2012. 1. 6.>');return false;" href="#AJAX"> <img id="ar12456737MrBtn" style="vertical-align: middle;" alt="부칙 <대통령령 제23488호, 2012. 1. 6.>보기" src="/LSW/images/button/btn_more_bu.gif" /> </a> </p> 
+       <p class="pty3_dep1"><span class="bl">제1조(시행일)</span> 이 영은 공포한 날부터 시행한다. &lt;단서 생략&gt;</p>
+       <div id="ar12456737">
+        <p class="pty3_dep1"><span class="bl">제2조</span> 생략</p>
+       </div> 
+      </div> 
+      <a name="J12456739" id="J12456739"></a> 
+      <div class="pgroup"> 
+       <p class="pty3" style="margin-bottom: -1px;"> <a class="nun" onclick="javascript:arView('ar12456739','<대통령령 제23614호, 2012. 2. 3.>'); return false;" href="#AJAX"> <img id="ar12456739btn" style="vertical-align: middle;" alt="부칙 <대통령령 제23614호, 2012. 2. 3.>조문목록 접기" src="/LSW/images/button/btn_cocl.gif" /> </a> <input name="arInf" id="chk12456739" style="vertical-align: middle;" type="checkbox" alt="부칙 <대통령령 제23614호, 2012. 2. 3.>체크박스 " value="12456739" /> <a class="nun" onclick="javascript:arView('ar12456739','<대통령령 제23614호, 2012. 2. 3.>'); return false;" href="#AJAX"> <label for="chk12456739"> <span class="bl"> 부      칙</span> </label> <span class="sfon">&lt;대통령령 제23614호, 2012. 2. 3.&gt;</span> </a> <a class="nun" onclick="javascript:arView('ar12456739','<대통령령 제23614호, 2012. 2. 3.>');return false;" href="#AJAX"> <img id="ar12456739MrBtn" style="vertical-align: middle;" alt="부칙 <대통령령 제23614호, 2012. 2. 3.>보기" src="/LSW/images/button/btn_more_bu.gif" /> </a> </p> 
+       <p class="pty3_dep1"><span class="bl">제1조(시행일)</span> 이 영은 2012년 2월 5일부터 시행한다.</p>
+       <div id="ar12456739">
+        <p class="pty3_dep1"><span class="bl">제2조(과징금의 산정기준에 관한 경과조치)</span> 이 영 시행 전의 위반행위에 대하여 과징금의 산정기준을 적용할 때에는 별표 1의 개정규정에도 불구하고 종전의 규정에 따른다.</p>
+       </div> 
+      </div> 
+      <a name="J12456741" id="J12456741"></a> 
+      <div class="pgroup"> 
+       <p class="pty3" style="margin-bottom: -1px;"> <a class="nun" onclick="javascript:arView('ar12456741','<대통령령 제24454호,  2013. 3. 23.>'); return false;" href="#AJAX"> <img id="ar12456741btn" style="vertical-align: middle;" alt="부칙 <대통령령 제24454호,  2013. 3. 23.>조문목록 접기" src="/LSW/images/button/btn_cocl.gif" /> </a> <input name="arInf" id="chk12456741" style="vertical-align: middle;" type="checkbox" alt="부칙 <대통령령 제24454호,  2013. 3. 23.>체크박스 " value="12456741" /> <a class="nun" onclick="javascript:arView('ar12456741','<대통령령 제24454호,  2013. 3. 23.>'); return false;" href="#AJAX"> <label for="chk12456741"> <span class="bl"> 부      칙</span> </label> <span class="sfon">&lt;대통령령 제24454호, 2013. 3. 23.&gt;</span> </a> <a class="nun" onclick="javascript:fncArLawPop('보건복지부와 그 소속기관 직제', '20130323', '24454');" href="#AJAX"> <span class="sfon">(보건복지부와 그 소속기관 직제) </span> </a> <a class="nun" onclick="javascript:arView('ar12456741','<대통령령 제24454호,  2013. 3. 23.>');return false;" href="#AJAX"> <img id="ar12456741MrBtn" style="vertical-align: middle;" alt="부칙 <대통령령 제24454호,  2013. 3. 23.>보기" src="/LSW/images/button/btn_more_bu.gif" /> </a> </p> 
+       <p class="pty3_dep1"><span class="bl">제1조(시행일)</span> 이 영은 공포한 날부터 시행한다. &lt;단서 생략&gt;</p>
+       <div id="ar12456741">
+        <p class="pty3_dep1"><span class="bl">제2조</span> 및 제3조 생략</p>
+        <p class="pty3_dep1"><span class="bl">제4조(다른 법령의 개정)</span> ①부터 ㊳까지 생략</p>
+        <p class="pty3_dep2"> ㊴ 화장품법 시행령 일부를 다음과 같이 개정한다.</p>
+        <p class="pty3_dep2"> 제11조, 제12조제2항 및 별표 2 제2호가목 중 “보건복지부령”을 각각 “총리령”으로 한다.</p>
+        <p class="pty3_dep2"> 제12조제1항, 제12조의2제1항 전단, 같은 조 제2항 각 호 외의 부분, 제14조 각 호 외의 부분, 제15조 각 호 외의 부분 및 별표 2 제1호나목 본문 중 “식품의약품안전청장”을 각각 “식품의약품안전처장”으로 한다.</p>
+       </div> 
+      </div> 
+      <a name="J12456743" id="J12456743"></a> 
+      <div class="pgroup"> 
+       <p class="pty3" style="margin-bottom: -1px;"> <a class="nun" onclick="javascript:arView('ar12456743','<대통령령 제25705호, 2014. 11. 4.>'); return false;" href="#AJAX"> <img id="ar12456743btn" style="vertical-align: middle;" alt="부칙 <대통령령 제25705호, 2014. 11. 4.>조문목록 접기" src="/LSW/images/button/btn_cocl.gif" /> </a> <input name="arInf" id="chk12456743" style="vertical-align: middle;" type="checkbox" alt="부칙 <대통령령 제25705호, 2014. 11. 4.>체크박스 " value="12456743" /> <a class="nun" onclick="javascript:arView('ar12456743','<대통령령 제25705호, 2014. 11. 4.>'); return false;" href="#AJAX"> <label for="chk12456743"> <span class="bl"> 부      칙</span> </label> <span class="sfon">&lt;대통령령 제25705호, 2014. 11. 4.&gt;</span> </a> <a class="nun" onclick="javascript:arView('ar12456743','<대통령령 제25705호, 2014. 11. 4.>');return false;" href="#AJAX"> <img id="ar12456743MrBtn" style="vertical-align: middle;" alt="부칙 <대통령령 제25705호, 2014. 11. 4.>보기" src="/LSW/images/button/btn_more_bu.gif" /> </a> </p> 
+       <p class="pty3_dep1"><span class="bl">제1조(시행일)</span> 이 영은 공포한 날부터 시행한다.</p>
+       <div id="ar12456743">
+        <p class="pty3_dep1"><span class="bl">제2조(과징금 미납자에 대한 처분에 관한 경과조치)</span> 이 영 시행 전에 제12조의2제1항에 따라 독촉장을 받고도 납부기한까지 과징금을 내지 아니한 자에 대해서는 종전의 규정에 따른다.</p>
+       </div> 
+      </div> 
+      <a name="J12456745" id="J12456745"></a> 
+      <div class="pgroup"> 
+       <p class="pty3" style="margin-bottom: -1px;"> <img id="ar12456745btn" style="vertical-align: middle;" alt="부칙<대통령령 제26452호, 2015. 7. 24.>조문목록 없음" src="/LSW/images/button/btn_dot.gif" /> <input name="arInf" id="chk12456745" style="vertical-align: middle;" type="checkbox" alt="부칙 <대통령령 제26452호, 2015. 7. 24.>체크박스 " value="12456745" /> <a class="nun" onclick="javascript:arView('ar12456745','<대통령령 제26452호, 2015. 7. 24.>'); return false;" href="#AJAX"> <label for="chk12456745"> <span class="bl"> 부      칙</span> </label> <span class="sfon">&lt;대통령령 제26452호, 2015. 7. 24.&gt;</span> </a> </p> 
+       <p class="pty3_dep1">이 영은 공포한 날부터 시행한다. 다만, 제14조제1호의3ㆍ제6호ㆍ제6호의2 및 제15조제7호의 개정규정은 2015년 7월 29일부터 시행한다.</p> 
+      </div> 
+      <a name="J12456747" id="J12456747"></a> 
+      <div class="pgroup"> 
+       <p class="pty3" style="margin-bottom: -1px;"> <img id="ar12456747btn" style="vertical-align: middle;" alt="부칙<대통령령 제27827호, 2017. 1. 31.>조문목록 없음" src="/LSW/images/button/btn_dot.gif" /> <input name="arInf" id="chk12456747" style="vertical-align: middle;" type="checkbox" alt="부칙 <대통령령 제27827호, 2017. 1. 31.>체크박스 " value="12456747" /> <a class="nun" onclick="javascript:arView('ar12456747','<대통령령 제27827호, 2017. 1. 31.>'); return false;" href="#AJAX"> <label for="chk12456747"> <span class="bl"> 부      칙</span> </label> <span class="sfon">&lt;대통령령 제27827호, 2017. 1. 31.&gt;</span> </a> </p> 
+       <p class="pty3_dep1">이 영은 2017년 2월 4일부터 시행한다.</p> 
+      </div> 
+      <a name="J12456749" id="J12456749"></a> 
+      <div class="pgroup"> 
+       <p class="pty3" style="margin-bottom: -1px;"> <img id="ar12456749btn" style="vertical-align: middle;" alt="부칙<대통령령 제29621호, 2019. 3. 12.>조문목록 없음" src="/LSW/images/button/btn_dot.gif" /> <input name="arInf" id="chk12456749" style="vertical-align: middle;" type="checkbox" alt="부칙 <대통령령 제29621호, 2019. 3. 12.>체크박스 " value="12456749" /> <a class="nun" onclick="javascript:arView('ar12456749','<대통령령 제29621호, 2019. 3. 12.>'); return false;" href="#AJAX"> <label for="chk12456749"> <span class="bl"> 부      칙</span> </label> <span class="sfon">&lt;대통령령 제29621호, 2019. 3. 12.&gt;</span> </a> </p> 
+       <p class="pty3_dep1">이 영은 2019년 3월 14일부터 시행한다. 다만, 제2조제3호, 제14조제1호의2 및 제15조제1호의2의 개정규정과 제14조제1호의3ㆍ제2호ㆍ제3호의3ㆍ제7호ㆍ제10호ㆍ제11호, 제15조제8호, 별표 1 및 별표 2의 개정규정 중 맞춤형화장품판매업 및 맞춤형화장품판매업자와 관련된 부분은 2020년 3월 14일부터 시행한다.</p> 
+      </div> 
+      <a name="J12456751" id="J12456751"></a> 
+      <div class="pgroup"> 
+       <p class="pty3" style="margin-bottom: -1px;"> <a class="nun" onclick="javascript:arView('ar12456751','<대통령령 제30245호, 2019. 12. 10.>'); return false;" href="#AJAX"> <img id="ar12456751btn" style="vertical-align: middle;" alt="부칙 <대통령령 제30245호, 2019. 12. 10.>조문목록 접기" src="/LSW/images/button/btn_cocl.gif" /> </a> <input name="arInf" id="chk12456751" style="vertical-align: middle;" type="checkbox" alt="부칙 <대통령령 제30245호, 2019. 12. 10.>체크박스 " value="12456751" /> <a class="nun" onclick="javascript:arView('ar12456751','<대통령령 제30245호, 2019. 12. 10.>'); return false;" href="#AJAX"> <label for="chk12456751"> <span class="bl"> 부      칙</span> </label> <span class="sfon">&lt;대통령령 제30245호, 2019. 12. 10.&gt;</span> </a> <a class="nun" onclick="javascript:arView('ar12456751','<대통령령 제30245호, 2019. 12. 10.>');return false;" href="#AJAX"> <img id="ar12456751MrBtn" style="vertical-align: middle;" alt="부칙 <대통령령 제30245호, 2019. 12. 10.>보기" src="/LSW/images/button/btn_more_bu.gif" /> </a> </p> 
+       <p class="pty3_dep1"><span class="bl">제1조(시행일)</span> 이 영은 2019년 12월 12일부터 시행한다. 다만, 제15조 각 호 외의 부분 및 대통령령 제29621호 화장품법 시행령 일부개정령 제15조제1호의3의 개정규정은 2020년 3월 14일부터 시행한다.</p>
+       <div id="ar12456751">
+        <p class="pty3_dep1"><span class="bl">제2조(과징금 산정기준에 관한 경과조치)</span> 이 영 시행 전의 위반행위에 대하여 과징금 산정기준을 적용할 때에는 별표 1 제2호의 개정규정에도 불구하고 종전의 규정에 따른다.</p>
+       </div> 
+      </div> 
+      <a name="J12457313" id="J12457313"></a> 
+      <div class="pgroup"> 
+       <p class="pty3" style="margin-bottom: -1px;"> <a class="nun" onclick="javascript:arView('ar12457313','<대통령령 제31655호,  2021. 4. 27.>'); return false;" href="#AJAX"> <img id="ar12457313btn" style="vertical-align: middle;" alt="부칙 <대통령령 제31655호,  2021. 4. 27.>조문목록 접기" src="/LSW/images/button/btn_cocl.gif" /> </a> <input name="arInf" id="chk12457313" style="vertical-align: middle;" type="checkbox" alt="부칙 <대통령령 제31655호,  2021. 4. 27.>체크박스 " value="12457313" /> <a class="nun" onclick="javascript:arView('ar12457313','<대통령령 제31655호,  2021. 4. 27.>'); return false;" href="#AJAX"> <label for="chk12457313"> <span class="bl"> 부      칙</span> </label> <span class="sfon">&lt;대통령령 제31655호, 2021. 4. 27.&gt;</span> </a> <a class="nun" onclick="javascript:arView('ar12457313','<대통령령 제31655호,  2021. 4. 27.>');return false;" href="#AJAX"> <img id="ar12457313MrBtn" style="vertical-align: middle;" alt="부칙 <대통령령 제31655호,  2021. 4. 27.>보기" src="/LSW/images/button/btn_more_bu.gif" /> </a> </p> 
+       <p class="pty3_dep1"><span class="bl">제1조(시행일)</span> 이 영은 공포한 날부터 시행한다.</p>
+       <div id="ar12457313">
+        <p class="pty3_dep1"><span class="bl">제2조(과징금 납부기한의 연기 및 분할납부에 관한 적용례)</span> 제12조의2의 개정규정은 이 영 시행 전에 과징금을 부과받고 그 납부기한이 이 영 시행일 기준으로 10일 이상 남은 경우에도 적용한다.</p>
+       </div> 
+      </div> 
+      <a name="J12457315" id="J12457315"></a> 
+      <div class="pgroup"> 
+       <p class="pty3" style="margin-bottom: -1px;"> <a class="nun" onclick="javascript:arView('ar12457315','<대통령령 제32445호,  2022. 2. 15.>'); return false;" href="#AJAX"> <img id="ar12457315btn" style="vertical-align: middle;" alt="부칙 <대통령령 제32445호,  2022. 2. 15.>조문목록 접기" src="/LSW/images/button/btn_cocl.gif" /> </a> <input name="arInf" id="chk12457315" style="vertical-align: middle;" type="checkbox" alt="부칙 <대통령령 제32445호,  2022. 2. 15.>체크박스 " value="12457315" /> <a class="nun" onclick="javascript:arView('ar12457315','<대통령령 제32445호,  2022. 2. 15.>'); return false;" href="#AJAX"> <label for="chk12457315"> <span class="bl"> 부      칙</span> </label> <span class="sfon">&lt;대통령령 제32445호, 2022. 2. 15.&gt;</span> </a> <a class="nun" onclick="javascript:arView('ar12457315','<대통령령 제32445호,  2022. 2. 15.>');return false;" href="#AJAX"> <img id="ar12457315MrBtn" style="vertical-align: middle;" alt="부칙 <대통령령 제32445호,  2022. 2. 15.>보기" src="/LSW/images/button/btn_more_bu.gif" /> </a> </p> 
+       <p class="pty3_dep1"><span class="bl">제1조(시행일)</span> 이 영은 2022년 2월 18일부터 시행한다.</p>
+       <div id="ar12457315">
+        <p class="pty3_dep1"><span class="bl">제2조(다른 법령의 개정)</span> 규제자유특구 및 지역특화발전특구에 관한 규제특례법 시행령 일부를 다음과 같이 개정한다.</p>
+        <p class="pty3_dep2"> 제81조제1항제2호 중 “「화장품법」 제5조제4항”을 “「화장품법」 제5조제5항”으로 한다.</p>
+       </div> 
+      </div> 
+      <a name="J12457317" id="J12457317"></a> 
+      <div class="pgroup"> 
+       <p class="pty3" style="margin-bottom: -1px;"> <img id="ar12457317btn" style="vertical-align: middle;" alt="부칙<대통령령 제33112호,  2022. 12. 20.>조문목록 없음" src="/LSW/images/button/btn_dot.gif" /> <input name="arInf" id="chk12457317" style="vertical-align: middle;" type="checkbox" alt="부칙 <대통령령 제33112호,  2022. 12. 20.>체크박스 " value="12457317" /> <a class="nun" onclick="javascript:arView('ar12457317','<대통령령 제33112호,  2022. 12. 20.>'); return false;" href="#AJAX"> <label for="chk12457317"> <span class="bl"> 부      칙</span> </label> <span class="sfon">&lt;대통령령 제33112호, 2022. 12. 20.&gt;</span> </a> <a class="nun" onclick="javascript:fncArLawPop('개인정보 침해요인 개선을 위한 49개 법령의 일부개정에 관한 대통령령', '20221220', '33112');" href="#AJAX"> <span class="sfon">(개인정보 침해요인 개선을 위한 49개 법령의 일부개정에 관한 대통령령) </span> </a> </p> 
+       <p class="pty3_dep1">이 영은 공포한 날부터 시행한다.</p> 
+      </div> 
+      <a name="J12457319" id="J12457319"></a> 
+      <div class="pgroup"> 
+       <p class="pty3" style="margin-bottom: -1px;"> <img id="ar12457319btn" style="vertical-align: middle;" alt="부칙<대통령령 제33913호,  2023. 12. 12.>조문목록 없음" src="/LSW/images/button/btn_dot.gif" /> <input name="arInf" id="chk12457319" style="vertical-align: middle;" type="checkbox" alt="부칙 <대통령령 제33913호,  2023. 12. 12.>체크박스 " value="12457319" /> <a class="nun" onclick="javascript:arView('ar12457319','<대통령령 제33913호,  2023. 12. 12.>'); return false;" href="#AJAX"> <label for="chk12457319"> <span class="bl"> 부      칙</span> </label> <span class="sfon">&lt;대통령령 제33913호, 2023. 12. 12.&gt;</span> </a> <a class="nun" onclick="javascript:fncArLawPop('행정법제 혁신을 위한 가덕도신공항 건설을 위한 특별법 시행령 등 123개 법령의 일부개정에 관한 대통령령', '20231212', '33913');" href="#AJAX"> <span class="sfon">(행정법제 혁신을 위한 가덕도신공항 건설을 위한 특별법 시행령 등 123개 법령의 일부개정에 관한 대통령령) </span> </a> </p> 
+       <p class="pty3_dep1">이 영은 공포한 날부터 시행한다.</p> 
+      </div> 
+      <a name="J12457321" id="J12457321"></a> 
+      <div class="pgroup"> 
+       <p class="pty3" style="margin-bottom: -1px;"> <img id="ar12457321btn" style="vertical-align: middle;" alt="부칙<대통령령 제36176호,  2026. 3. 10.>조문목록 없음" src="/LSW/images/button/btn_dot.gif" /> <input name="arInf" id="chk12457321" style="vertical-align: middle;" type="checkbox" alt="부칙 <대통령령 제36176호,  2026. 3. 10.>체크박스 " value="12457321" /> <a class="nun" onclick="javascript:arView('ar12457321','<대통령령 제36176호,  2026. 3. 10.>'); return false;" href="#AJAX"> <label for="chk12457321"> <span class="bl"> 부      칙</span> </label> <span class="sfon">&lt;대통령령 제36176호, 2026. 3. 10.&gt;</span> </a> </p> 
+       <p class="pty3_dep1">이 영은 공포한 날부터 시행한다. 다만 제13조의2의 개정규정은 2026년 4월 2일부터 시행한다.</p> 
+      </div> 
+     </div> 
+     <!-- 부칙 영역 끝 --> 
+     <!-- 별표 서식 시작 --> 
+     <input type="hidden" id="bylLnkDpYn" value="0" /> 
+     <br /> 
+     <a name="byl"></a> 
+     <ul class="pconfile pb30 pcf_sec01" style="padding: 0px 0px 0px 50px; font-size: 1.1em;"> 
+      <li style="position: relative;"> <span class="pcf_cover "> <a name="J18001547" id="J18001547"></a> <a class="blu" onclick="javascript:bylInfoDiv('18001547');" href="#AJAX"> <img id="by18001547btn" style="margin-left: -13px;" alt="별표" src="/LSW/images/button/btn_coop.gif" /> </a> <a class="blu" onclick="javascript:bylInfoDiv('18001547');" href="#AJAX"> [별표 1] 과징금 산정기준(제11조 관련) </a> <a href="flDownload.do?gubun=&amp;flSeq=162123615&amp;bylClsCd=110201" target="_blank"> <img alt="HWP파일 다운로드" src="/LSW/images/button/btn_han_16.png" /> </a> <a href="flDownload.do?gubun=&amp;flSeq=162123617&amp;bylClsCd=110201" target="_blank"> <img alt="PDF파일 다운로드" src="/LSW/images/button/btn_pdf.gif" /> </a> <a href="flDownload.do?gubun=&amp;flSeq=162216971&amp;bylClsCd=110201" target="_blank"> <img alt="점자파일 다운로드" src="/LSW/images/button/btn_brf.gif" /> </a> <a href="javascript:;" onclick="fileLayer('0');"> <img alt="법령별표 한글주소" src="/LSW/images/button/btn_link.gif" id="imgPos0" /> </a> </span> 
+       <div class="d_cont_bx" id="byl18001547" style="display: none;"> 
+       </div> 
+       <div class="d_cont_bx" id="svByl18001547" name="162123617" style="display: none; overflow: auto; width: 926px; height: 470px;"> 
+       </div> 
+       <!-- 별표 서식 레이어 팝업 시작--> 
+       <div class="byl_pop" id="fileSaveLayer0" style="padding: 7px; width: 500px; height: auto; position: absolute; overflow: visible; display: none; border: 2px solid #3082d0; background: white; border-radius: 10px; z-index: 1;"> 
+        <ul class="pconfile pb30 pcf_sec01" style="padding: 0px 0px 0px 50px; font-size: 1.1em;"> 
+         <li> 
+          <div> 
+           <a href="flDownload.do?gubun=&amp;flSeq=162123615&amp;bylClsCd=110201" target="_blank"> <img alt="HWP파일 다운로드" src="/LSW/images/button/btn_han_25.png" style="float: left; margin-right: 10px; margin-top: -3px;" /> </a> 
+           <div> 
+            <a href="flDownload.do?gubun=&amp;flSeq=162123615&amp;bylClsCd=110201" target="_blank"> 
+             <div id="hwptext0" value="[별표 1] 과징금 산정기준(제11조 관련)" style="float: left;">
+               [별표 1] 과징금 산정기준(제11조 관련) 
+             </div> 
+             <div style="float: left;">
+              .hwp
+             </div> </a> 
+           </div> 
+          </div> </li> 
+         <hr style="border: solid 0.1px Gainsboro; display: block; margin-top: 23px;" /> 
+         <li> 
+          <div> 
+           <a href="flDownload.do?gubun=&amp;flExt=hwpx&amp;flSeq=162123615&amp;bylClsCd=110201" target="_blank"> <img alt="HWP파일 다운로드" src="/LSW/images/button/btn_han_25.png" style="float: left; margin-right: 10px; margin-top: -3px;" /> </a> 
+           <div> 
+            <a href="flDownload.do?gubun=&amp;flExt=hwpx&amp;flSeq=162123615&amp;bylClsCd=110201" target="_blank"> 
+             <div id="hwpxtext0" value="[별표 1] 과징금 산정기준(제11조 관련)" style="float: left;">
+               [별표 1] 과징금 산정기준(제11조 관련) 
+             </div> 
+             <div style="float: left;">
+              .hwpx
+             </div> </a> 
+           </div> 
+          </div> </li> 
+         <hr style="border: solid 0.1px Gainsboro; display: block; margin-top: 23px;" /> 
+         <li> 
+          <div> 
+           <a href="flDownload.do?gubun=&amp;flSeq=162123617&amp;bylClsCd=110201" target="_blank"> <img alt="PDF파일 다운로드" src="/LSW/images/button/btn_pdf_25.png" style="float: left; margin-right: 10px; margin-top: -3px;" /> </a> 
+           <div> 
+            <a href="flDownload.do?gubun=&amp;flSeq=162123617&amp;bylClsCd=110201" target="_blank"> 
+             <div id="pdftext0" value="[별표 1] 과징금 산정기준(제11조 관련)" style="float: left;">
+               [별표 1] 과징금 산정기준(제11조 관련) 
+             </div> 
+             <div style="float: left;">
+              .pdf
+             </div> </a> 
+           </div> 
+          </div> </li> 
+         <hr style="border: solid 0.1px Gainsboro; display: block; margin-top: 23px;" /> 
+         <li> <p style="margin-bottom: 3px;">        아래 <img alt="법령별표 한글주소" src="/LSW/images/button/btn_link.gif" style="margin-top: 1px;" />을 눌러 주소를 복사하세요 </p> 
+          <div> 
+           <a href="javascript:;" onclick="copyToClipBoard(0);"> <img alt="법령별표 한글주소" src="/LSW/images/button/btn_link_25.png" style="float: left; margin-right: 10px; margin-top: 10px;" /> </a> 
+           <div> 
+            <label for="textarea"> <textarea class="bylKoAddr" id="textarea0" style="width: 415px; height: 35px; border-color: #c2c0c0; padding: 8px; resize: none;" readonly="">
+												https://www.law.go.kr/법령별표서식/(화장품법 시행령,20260310,별표1)
+											</textarea> </label> 
+           </div> 
+          </div> </li> 
+         <div style="float: right; margin-top: -10px;"> 
+          <button type="button" onclick="delLayer('0');" style="width: 60px; height: 33px; color: white; 
+									background: #1c76c3; margin-right: 14px; margin-top: 10px; border-radius: 5px;"> 닫힘 </button> 
+         </div> 
+        </ul> 
+       </div> 
+       <!-- 별표 서식 레이어 팝업 끝--> </li> 
+      <li style="position: relative;"> <span class="pcf_cover "> <a name="J18001549" id="J18001549"></a> <a class="blu" onclick="javascript:bylInfoDiv('18001549');" href="#AJAX"> <img id="by18001549btn" style="margin-left: -13px;" alt="별표" src="/LSW/images/button/btn_coop.gif" /> </a> <a class="blu" onclick="javascript:bylInfoDiv('18001549');" href="#AJAX"> [별표 2] 과태료의 부과기준(제16조 관련) </a> <a href="flDownload.do?gubun=&amp;flSeq=162123623&amp;bylClsCd=110201" target="_blank"> <img alt="HWP파일 다운로드" src="/LSW/images/button/btn_han_16.png" /> </a> <a href="flDownload.do?gubun=&amp;flSeq=162123625&amp;bylClsCd=110201" target="_blank"> <img alt="PDF파일 다운로드" src="/LSW/images/button/btn_pdf.gif" /> </a> <a href="flDownload.do?gubun=&amp;flSeq=162216973&amp;bylClsCd=110201" target="_blank"> <img alt="점자파일 다운로드" src="/LSW/images/button/btn_brf.gif" /> </a> <a href="javascript:;" onclick="fileLayer('1');"> <img alt="법령별표 한글주소" src="/LSW/images/button/btn_link.gif" id="imgPos1" /> </a> </span> 
+       <div class="d_cont_bx" id="byl18001549" style="display: none;"> 
+       </div> 
+       <div class="d_cont_bx" id="svByl18001549" name="162123625" style="display: none; overflow: auto; width: 926px; height: 470px;"> 
+       </div> 
+       <!-- 별표 서식 레이어 팝업 시작--> 
+       <div class="byl_pop" id="fileSaveLayer1" style="padding: 7px; width: 500px; height: auto; position: absolute; overflow: visible; display: none; border: 2px solid #3082d0; background: white; border-radius: 10px; z-index: 1;"> 
+        <ul class="pconfile pb30 pcf_sec01" style="padding: 0px 0px 0px 50px; font-size: 1.1em;"> 
+         <li> 
+          <div> 
+           <a href="flDownload.do?gubun=&amp;flSeq=162123623&amp;bylClsCd=110201" target="_blank"> <img alt="HWP파일 다운로드" src="/LSW/images/button/btn_han_25.png" style="float: left; margin-right: 10px; margin-top: -3px;" /> </a> 
+           <div> 
+            <a href="flDownload.do?gubun=&amp;flSeq=162123623&amp;bylClsCd=110201" target="_blank"> 
+             <div id="hwptext1" value="[별표 2] 과태료의 부과기준(제16조 관련)" style="float: left;">
+               [별표 2] 과태료의 부과기준(제16조 관련) 
+             </div> 
+             <div style="float: left;">
+              .hwp
+             </div> </a> 
+           </div> 
+          </div> </li> 
+         <hr style="border: solid 0.1px Gainsboro; display: block; margin-top: 23px;" /> 
+         <li> 
+          <div> 
+           <a href="flDownload.do?gubun=&amp;flExt=hwpx&amp;flSeq=162123623&amp;bylClsCd=110201" target="_blank"> <img alt="HWP파일 다운로드" src="/LSW/images/button/btn_han_25.png" style="float: left; margin-right: 10px; margin-top: -3px;" /> </a> 
+           <div> 
+            <a href="flDownload.do?gubun=&amp;flExt=hwpx&amp;flSeq=162123623&amp;bylClsCd=110201" target="_blank"> 
+             <div id="hwpxtext1" value="[별표 2] 과태료의 부과기준(제16조 관련)" style="float: left;">
+               [별표 2] 과태료의 부과기준(제16조 관련) 
+             </div> 
+             <div style="float: left;">
+              .hwpx
+             </div> </a> 
+           </div> 
+          </div> </li> 
+         <hr style="border: solid 0.1px Gainsboro; display: block; margin-top: 23px;" /> 
+         <li> 
+          <div> 
+           <a href="flDownload.do?gubun=&amp;flSeq=162123625&amp;bylClsCd=110201" target="_blank"> <img alt="PDF파일 다운로드" src="/LSW/images/button/btn_pdf_25.png" style="float: left; margin-right: 10px; margin-top: -3px;" /> </a> 
+           <div> 
+            <a href="flDownload.do?gubun=&amp;flSeq=162123625&amp;bylClsCd=110201" target="_blank"> 
+             <div id="pdftext1" value="[별표 2] 과태료의 부과기준(제16조 관련)" style="float: left;">
+               [별표 2] 과태료의 부과기준(제16조 관련) 
+             </div> 
+             <div style="float: left;">
+              .pdf
+             </div> </a> 
+           </div> 
+          </div> </li> 
+         <hr style="border: solid 0.1px Gainsboro; display: block; margin-top: 23px;" /> 
+         <li> <p style="margin-bottom: 3px;">        아래 <img alt="법령별표 한글주소" src="/LSW/images/button/btn_link.gif" style="margin-top: 1px;" />을 눌러 주소를 복사하세요 </p> 
+          <div> 
+           <a href="javascript:;" onclick="copyToClipBoard(1);"> <img alt="법령별표 한글주소" src="/LSW/images/button/btn_link_25.png" style="float: left; margin-right: 10px; margin-top: 10px;" /> </a> 
+           <div> 
+            <label for="textarea"> <textarea class="bylKoAddr" id="textarea1" style="width: 415px; height: 35px; border-color: #c2c0c0; padding: 8px; resize: none;" readonly="">
+												https://www.law.go.kr/법령별표서식/(화장품법 시행령,20260310,별표2)
+											</textarea> </label> 
+           </div> 
+          </div> </li> 
+         <div style="float: right; margin-top: -10px;"> 
+          <button type="button" onclick="delLayer('1');" style="width: 60px; height: 33px; color: white; 
+									background: #1c76c3; margin-right: 14px; margin-top: 10px; border-radius: 5px;"> 닫힘 </button> 
+         </div> 
+        </ul> 
+       </div> 
+       <!-- 별표 서식 레이어 팝업 끝--> </li> 
+     </ul> 
+     <br /> 
+     <!-- 별표 서식 끝 --> 
+    </div> 
+   </div> 
+  </div> 
+ </body>
+</html>

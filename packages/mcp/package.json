@@ -1,0 +1,7 @@
+{
+  "name": "@cosmetics-ad-compliance/mcp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "MCP server surface for the cosmetics ad compliance review engine."
+}

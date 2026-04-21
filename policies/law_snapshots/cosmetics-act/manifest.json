@@ -1,0 +1,16 @@
+{
+  "sourceId": "cosmetics-act",
+  "title": "화장품법",
+  "currentVersionTag": "2026-04-02",
+  "syncPolicy": "tracked_external_sync",
+  "officialUrl": "https://www.law.go.kr/LSW/lsInfoP.do?lsId=002015",
+  "versions": [
+    {
+      "versionTag": "2026-04-02",
+      "metadataPath": "policies/law_snapshots/cosmetics-act/versions/2026-04-02/metadata.json",
+      "bodyPath": "policies/law_snapshots/cosmetics-act/versions/2026-04-02/body.txt",
+      "anchorsPath": "policies/law_snapshots/cosmetics-act/versions/2026-04-02/anchors.json",
+      "status": "synced"
+    }
+  ]
+}
